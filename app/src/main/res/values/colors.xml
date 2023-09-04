@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+    <color name="green">#306c08</color>
+    <color name="green_001">#378401</color>
+    <color name="green_002">#638c24</color>
+    <color name="softgreen">#BEDE81</color>
+    <color name="softgreen_001">#F5FFE3</color>
+    <color name="softgreen_002">#E5FFC5</color>
+
+    <color name="colorAccent">#BEDE81</color>
+    <color name="colorCheck">#ffffff</color>
+    <color name="colorUncheck">#FF000000</color>
+
+</resources>

@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Koki Dapur</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="beranda">BERANDA</string>
+    <string name="bahan">BAHAN</string>
+    <string name="resep">RESEP</string>
+    <string name="fragment_home">Fragment Home</string>
+    <string name="fragment_bahan">Fragment Bahan</string>
+    <string name="fragment_resep">Fragment Resep</string>
+</resources>

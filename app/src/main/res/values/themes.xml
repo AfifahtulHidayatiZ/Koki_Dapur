@@ -1,0 +1,37 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.KokiDapur" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Customize your light theme here. -->
+        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/green_001</item>
+        <item name="colorPrimaryVariant">@color/green</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/softgreen</item>
+        <item name="colorSecondaryVariant">@color/green_002</item>
+        <item name="colorOnSecondary">@color/black</item>
+
+    </style>
+
+    <style name="Theme.KokiDapur" parent="Base.Theme.KokiDapur" />
+
+    <style name="Base.Theme.KokiDapur.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="toolbartext" parent="TextAppearance.MaterialComponents.Button">
+        <item name="android:textSize">18dp</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="Foxandroid.Toolbar" parent="Widget.AppCompat.Toolbar">
+        <item name="background">@color/green_001</item>
+        <item name="theme">@style/Theme.KokiDapur</item>
+        <item name="popupTheme">@style/Theme.Material3.DayNight.NoActionBar</item>
+        <item name="titleTextAppearance">@style/toolbartext</item>
+        <item name="android:spotShadowAlpha">0.5</item>
+        <item name="elevation">20dp</item>
+    </style>
+</resources>
