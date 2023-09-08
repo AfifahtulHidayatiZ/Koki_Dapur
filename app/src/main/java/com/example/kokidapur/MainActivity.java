@@ -19,7 +19,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.tabs.TabLayout;
 
 public class MainActivity extends AppCompatActivity {
-    private static final String TAG =MainActivity.class.getSimpleName();
+//    private static final String TAG =MainActivity.class.getSimpleName();
     private BottomNavigationView bottomNavigationView;
     private Fragment fragment;
     FrameLayout frameLayout;
@@ -32,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
         {
             linearLayout.setVisibility(View.VISIBLE);
             frameLayout.setVisibility(View.GONE);
+            load_fragment_bottom(new HomeFragment());
             return true;
         }else if (item.getItemId()==R.id.nav_bahan){
             linearLayout.setVisibility(View.GONE);
@@ -86,7 +87,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-//
 //        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
 //            @Override
 //            public boolean onNavigationItemSelected(@NonNull MenuItem item) {

@@ -6,11 +6,17 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
+import android.widget.LinearLayout;
+
+import com.google.android.material.tabs.TabLayout;
 
 ///**
 // * A simple {@link Fragment} subclass.
@@ -18,6 +24,7 @@ import android.view.ViewGroup;
 // * create an instance of this fragment.
 // */
 public class HomeFragment extends Fragment {
+    private RecyclerView mrecyclerView;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -64,6 +71,73 @@ public class HomeFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_home, container, false);
+//
+//        TabLayout tabLayout = (TabLayout) view.findViewById(R.id.Tab_Layout);
+//
+//        ViewPager viewPager = (ViewPager) view.findViewById(R.id.View_Pager);
+//
+//        LinearLayout linearLayout = (LinearLayout) view.findViewById(R.id.LL_Tab);
+//
+//
+//        LinearLayoutManager mlayoutManager = new LinearLayoutManager(getActivity());
+//        mlayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
+//
+//        viewPager.setAdapter(new PagerAdapter(getFragmentManager(), tabLayout.getTabCount()));
+//        viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
+//
+//        tabLayout.setupWithViewPager(viewPager);
+//        tabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
+//        tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+//            @Override
+//            public void onTabSelected(TabLayout.Tab tab) {
+//                viewPager.setCurrentItem(tab.getPosition());
+//            }
+//
+//            @Override
+//            public void onTabUnselected(TabLayout.Tab tab) {
+//
+//            }
+//
+//            @Override
+//            public void onTabReselected(TabLayout.Tab tab) {
+//
+//            }
+//        });
+//        return view;
+//    }
+//
+//    public class PagerAdapter extends FragmentStatePagerAdapter{
+//        int mNumOfTabs;
+//
+//        public PagerAdapter(@NonNull FragmentManager fm, int NumOfTabs) {
+//            super(fm);
+//            this.mNumOfTabs = NumOfTabs;
+//        }
+//
+//        @NonNull
+//        @Override
+//        public Fragment getItem(int position) {
+//            switch (position){
+//                case 0:
+//                    TabMenuHariIni hariIni= new TabMenuHariIni();
+//                    return hariIni;
+//                case 1:
+//                    TabMenuMingguIni mingguIni = new TabMenuMingguIni();
+//                    return mingguIni;
+//                case 2:
+//                    TabRiwayatMenu riwayatMenu = new TabRiwayatMenu();
+//                    return riwayatMenu;
+//
+//                default:
+//                    return null;
+//            }
+//
+//        }
+//
+//        @Override
+//        public int getCount() {
+//            return mNumOfTabs;
+//        }
     }
 
 }

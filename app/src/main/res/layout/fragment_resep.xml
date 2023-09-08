@@ -15,18 +15,9 @@
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbarResep"
             android:background="@color/green_001"
-            style="@style/Foxandroid.Toolbar"
             android:layout_width="match_parent"
-            android:layout_height="?actionBarSize">
-
-            <ImageButton
-                android:src="@drawable/delete"
-                android:background="@color/green_001"
-                android:layout_gravity="end"
-                android:contentDescription="Hapur Resep"
-                android:layout_marginRight="26dp"
-                android:layout_width="50dp"
-                android:layout_height="50dp"/>
+            android:layout_height="55dp"
+            app:menu="@menu/action_menu_delete">
         </androidx.appcompat.widget.Toolbar>
 
     </com.google.android.material.appbar.AppBarLayout>

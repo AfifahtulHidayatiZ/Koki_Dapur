@@ -11,7 +11,7 @@
     <color name="softgreen_002">#E5FFC5</color>
 
     <color name="colorAccent">#BEDE81</color>
-    <color name="colorCheck">#ffffff</color>
+    <color name="colorCheck">#E5FFC5</color>
     <color name="colorUncheck">#FF000000</color>
 
 </resources>

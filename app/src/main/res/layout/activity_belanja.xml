@@ -7,20 +7,20 @@
     tools:context=".BelanjaActivity"
     android:orientation="vertical">
 
-    <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/AppBarBahan"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+<!--    <com.google.android.material.appbar.AppBarLayout-->
+<!--        android:id="@+id/AppBarBahan"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content">-->
 
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbarBahan"
-            android:background="@color/green_001"
-            style="@style/Foxandroid.Toolbar"
-            app:navigationIcon="@drawable/back"
-            android:layout_width="match_parent"
-            android:layout_height="?actionBarSize"/>
+<!--        <androidx.appcompat.widget.Toolbar-->
+<!--            android:id="@+id/toolbarBelanja"-->
+<!--            android:background="@color/green_001"-->
+<!--            style="@style/Foxandroid.Toolbar"-->
+<!--            app:navigationIcon="@drawable/back"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="55dp"/>-->
 
-    </com.google.android.material.appbar.AppBarLayout>
+<!--    </com.google.android.material.appbar.AppBarLayout>-->
 
     <TextView
         android:text="DAFTAR BELANJA"
@@ -39,16 +39,29 @@
         android:layout_height="match_parent"
         android:background="@drawable/background_bahan">
 
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/RV_ListBelanja"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="26dp"
+            android:layout_marginEnd="22dp"
+            android:layout_marginBottom="10dp"
+            tools:listitem="@layout/list_belanja_layout" />
+
         <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/floatingBahan"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentRight="true"
-            android:src="@drawable/floating_add"
-            android:layout_margin="16dp"
-            android:contentDescription="Tambahn Bahan"
-            android:backgroundTint="@color/green_001"
+            android:id="@+id/floatingBelanja"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
+            android:backgroundTint="@color/green_001"
+            android:contentDescription="Tambahn Bahan"
+            android:src="@drawable/floating_add" />
 
     </RelativeLayout>
 

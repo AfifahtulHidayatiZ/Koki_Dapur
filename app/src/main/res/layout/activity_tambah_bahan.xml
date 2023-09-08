@@ -8,19 +8,19 @@
     android:orientation="vertical"
     android:weightSum="1">
 
-    <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/AppBarTambahBahan"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+<!--    <com.google.android.material.appbar.AppBarLayout-->
+<!--        android:id="@+id/AppBarTambahBahan"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content">-->
 
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbarTambahBahan"
-            android:background="@color/green_001"
-            style="@style/Foxandroid.Toolbar"
-            app:navigationIcon="@drawable/back"
-            android:layout_width="match_parent"
-            android:layout_height="?actionBarSize"/>
-    </com.google.android.material.appbar.AppBarLayout>
+<!--        <androidx.appcompat.widget.Toolbar-->
+<!--            android:id="@+id/toolbarTambahBahan"-->
+<!--            android:background="@color/green_001"-->
+<!--            style="@style/Foxandroid.Toolbar"-->
+<!--            app:navigationIcon="@drawable/back"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="55dp"/>-->
+<!--    </com.google.android.material.appbar.AppBarLayout>-->
 
     <TextView
         android:text="TAMBAH STOK BAHAN"
@@ -40,8 +40,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:background="@drawable/background_add_bahan">
+        android:layout_marginRight="10dp">
         <TextView
             android:text="Nama Bahan"
             android:textSize="16sp"
@@ -65,7 +64,7 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/black"
                 android:textSize="12sp"
-                android:hint="Minyak Goreng"
+                android:hint="Nama Bahan"
                 android:typeface="serif"/>
 
 

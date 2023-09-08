@@ -8,4 +8,8 @@
     <string name="fragment_home">Fragment Home</string>
     <string name="fragment_bahan">Fragment Bahan</string>
     <string name="fragment_resep">Fragment Resep</string>
+
+    <string name="daftar_belanja">Daftar Belanja</string>
+    <string name="hapus">Hapus</string>
+
 </resources>

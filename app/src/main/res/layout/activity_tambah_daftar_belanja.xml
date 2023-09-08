@@ -7,19 +7,19 @@
     tools:context=".TambahDaftarBelanjaActivity"
     android:orientation="vertical">
 
-    <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/AppBarTambahBelanja"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+<!--    <com.google.android.material.appbar.AppBarLayout-->
+<!--        android:id="@+id/AppBarTambahBelanja"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content">-->
 
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbarTambahBelanja"
-            android:background="@color/green_001"
-            style="@style/Foxandroid.Toolbar"
-            app:navigationIcon="@drawable/back"
-            android:layout_width="match_parent"
-            android:layout_height="?actionBarSize"/>
-    </com.google.android.material.appbar.AppBarLayout>
+<!--        <androidx.appcompat.widget.Toolbar-->
+<!--            android:id="@+id/toolbarTambahBelanja"-->
+<!--            android:background="@color/green_001"-->
+<!--            style="@style/Foxandroid.Toolbar"-->
+<!--            app:navigationIcon="@drawable/back"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="55dp"/>-->
+<!--    </com.google.android.material.appbar.AppBarLayout>-->
 
     <TextView
         android:text="TAMBAH DAFTAR BELANJA"

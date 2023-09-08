@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".TambahMenuActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:weightSum="1">
+
+        <!--        <com.google.android.material.appbar.AppBarLayout-->
+        <!--            android:id="@+id/AppBarTambahMenu"-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="wrap_content">-->
+
+        <!--            <androidx.appcompat.widget.Toolbar-->
+        <!--                android:id="@+id/toolbarTambahMenu"-->
+        <!--                android:background="@color/green_001"-->
+        <!--                style="@style/Foxandroid.Toolbar"-->
+        <!--                app:navigationIcon="@drawable/back"-->
+        <!--                android:layout_width="match_parent"-->
+        <!--                android:layout_height="55dp"/>-->
+        <!--        </com.google.android.material.appbar.AppBarLayout>-->
+
+
+        <TextView
+            android:id="@+id/Tanggal_RiwayatMenu"
+            android:text="KAMIS, 01 JUNI 2023"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:typeface="serif"
+            android:gravity="center"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:textColor="@color/green_001"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <LinearLayout
+            android:weightSum="1"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/background_add_bahan">
+            <TextView
+                android:text="Menu"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="@color/green_001"
+                android:typeface="serif"
+                android:layout_marginRight="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="15dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:orientation="horizontal"
+                android:weightSum="1">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_weight="1"
+                    android:id="@+id/InputNamaMenu"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/black"
+                        android:textSize="12sp"
+                        android:hint="Ayam Bakar Madu"
+                        android:typeface="serif"/>
+
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:layout_weight="1"
+                    android:id="@+id/foatingTambahMenu"
+                    android:layout_gravity="center_vertical"
+                    android:backgroundTint="@color/green_001"
+                    android:src="@drawable/floating_add"
+                    android:contentDescription="Tambah Menu"
+                    app:fabCustomSize="40dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/ListTambahn_Menu"
+                android:typeface="serif"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginRight="10dp"
+                android:layout_marginLeft="10dp"
+                android:weightSum="1">
+
+                <TextView
+                    android:layout_weight="1"
+                    android:text="Bahan"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/green_001"
+                    android:typeface="serif"
+                    android:layout_marginTop="15dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:layout_weight="1"
+                    android:id="@+id/foatingTambahBahan"
+                    android:layout_gravity="center_vertical"
+                    android:backgroundTint="@color/green_001"
+                    android:src="@drawable/floating_add"
+                    android:contentDescription="Tambah Menu"
+                    app:fabCustomSize="40dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+            </LinearLayout>
+
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/ListTambah_Bahan"
+                android:typeface="serif"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginRight="10dp"
+                android:layout_marginLeft="10dp"
+                android:weightSum="1">
+
+                <TextView
+                    android:layout_weight="1"
+                    android:text="Resep"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/green_001"
+                    android:typeface="serif"
+                    android:layout_marginTop="15dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:layout_weight="1"
+                    android:id="@+id/foatingTambahResep"
+                    android:layout_gravity="center_vertical"
+                    android:backgroundTint="@color/green_001"
+                    android:src="@drawable/floating_add"
+                    android:contentDescription="Tambah Menu"
+                    app:fabCustomSize="40dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/ListTambah_Resep"
+                android:typeface="serif"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+
+</ScrollView>
