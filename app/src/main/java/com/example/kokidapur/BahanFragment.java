@@ -3,10 +3,14 @@ package com.example.kokidapur;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -58,6 +62,8 @@ public class BahanFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+        //back
+        setHasOptionsMenu(true);
 
 
     }
@@ -80,5 +86,22 @@ public class BahanFragment extends Fragment {
 
     }
 
+    //back
+    @Override
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+        inflater.inflate(R.menu.action_menu_shopping, menu); //toolbar menu pada file menu
+        super.onCreateOptionsMenu(menu, inflater);
+    }
 
+    //back
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.item_daftar_belanja){
+            Intent intent = new Intent(getActivity(), BelanjaActivity.class);
+            startActivity(intent);
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
 }

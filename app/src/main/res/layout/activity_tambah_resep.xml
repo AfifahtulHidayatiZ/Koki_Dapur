@@ -26,13 +26,14 @@
 <!--        </com.google.android.material.appbar.AppBarLayout>-->
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/InputNamaResep"
+            android:id="@+id/InputLayoutNamaResep"
             android:layout_margin="10dp"
             android:layout_gravity="center"
             android:layout_width="300dp"
             android:layout_height="wrap_content">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/InputNamaResep"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textColor="@color/black"
@@ -57,17 +58,18 @@
                 android:layout_height="wrap_content"/>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/InputNamaBahanBahan"
+            android:id="@+id/InputLayoutNamaBahanBahan"
             android:layout_margin="10dp"
             android:layout_gravity="center"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/InputNamaBahanBahan"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textColor="@color/black"
-                android:textSize="12sp"
+                android:textSize="14sp"
                 android:hint="Bahan yang Diperlukan"
                 android:typeface="serif"/>
 
@@ -86,17 +88,18 @@
                 android:layout_height="wrap_content"/>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/InputCaraMembuat"
+            android:id="@+id/InputLayoutCaraMembuat"
             android:layout_margin="10dp"
             android:layout_gravity="center"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/InputCaraMembuat"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textColor="@color/black"
-                android:textSize="12sp"
+                android:textSize="14sp"
                 android:hint="Cara Membuat"
                 android:typeface="serif"/>
 

@@ -5,6 +5,7 @@
         android:bottomRightRadius="8dp"
         android:topRightRadius="8dp"
         android:bottomLeftRadius="8dp"/>
-    <solid android:color="@color/softgreen_002"/>
+<!--    <stroke android:width="2dp" android:color="@color/green_001"/>-->
+    <solid android:color="@color/softgreen_001"/>
 
 </shape>

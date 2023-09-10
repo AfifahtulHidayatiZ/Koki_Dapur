@@ -17,8 +17,7 @@
             android:background="@color/green_001"
             android:layout_width="match_parent"
             android:layout_height="55dp"
-            app:menu="@menu/action_menu_shopping">
-        </androidx.appcompat.widget.Toolbar>
+            app:menu="@menu/action_menu_shopping"/>
 
     </com.google.android.material.appbar.AppBarLayout>
 
