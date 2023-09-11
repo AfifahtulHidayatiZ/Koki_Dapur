@@ -7,6 +7,8 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.Nullable;
 
+import com.example.kokidapur.contract.ContractDatabase;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -20,16 +22,28 @@ public class Helper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        final String SQL_CREATE_TABLE = "CREATE TABLE recipes (id INTEGER PRIMARY KEY autoincrement, recipe_name TEXT NOT NULL, material_name TEXT NOT NULL, instruction TEXT NOT NULL)";
-        db.execSQL(SQL_CREATE_TABLE);
+        db.execSQL(ContractDatabase.MenuContract.SQL_CREATE_TABLE);
+        db.execSQL(ContractDatabase.ResepContract.SQL_CREATE_TABLE);
+        db.execSQL(ContractDatabase.BahanContract.SQL_CREATE_TABLE);
+        db.execSQL(ContractDatabase.MRBContract.SQL_CREATE_TABLE);
+//        final String SQL_CREATE_TABLE = "CREATE TABLE recipes (" +
+//                "id INTEGER PRIMARY KEY autoincrement, " +
+//                "recipe_name TEXT NOT NULL, " +
+//                "material_name TEXT NOT NULL, " +
+//                "instruction TEXT NOT NULL)";
+//        db.execSQL(SQL_CREATE_TABLE);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        db.execSQL("DROP TABLE IF EXISTS recipes");
+        db.execSQL("DROP TABLE IF EXISTS"+ ContractDatabase.MenuContract.TABLE_NAME);
+        db.execSQL("DROP TABLE IF EXISTS"+ ContractDatabase.ResepContract.TABLE_NAME);
+        db.execSQL("DROP TABLE IF EXISTS"+ ContractDatabase.BahanContract.TABLE_NAME);
+        db.execSQL("DROP TABLE IF EXISTS"+ ContractDatabase.MRBContract.TABLE_NAME);
         onCreate(db);
     }
 
+    //menampilkan data list resep
     public ArrayList<HashMap<String, String>> getAll(){
         ArrayList<HashMap<String, String>> list = new ArrayList<>();
         String QUERY = "SELECT * FROM recipes";
@@ -50,18 +64,21 @@ public class Helper extends SQLiteOpenHelper {
         return list;
     }
 
+    //menginputkan data resep
     public void insert(String recipe_name, String material_name, String instruction){
         SQLiteDatabase database = this.getWritableDatabase();
         String QUERY ="INSERT INTO recipes (recipe_name, material_name, instruction) VALUES('"+recipe_name+"', '"+material_name+"', '"+instruction+"')";
         database.execSQL(QUERY);
     }
 
+    //melakukan update(edit) data resep
     public void update(int id, String recipe_name, String material_name, String instruction){
         SQLiteDatabase database = this.getWritableDatabase();
         String QUERY = "UPDATE recipes SET recipe_name = '"+recipe_name+"', material_name = '"+material_name+"', instruction = '"+instruction+"' WHERE id = "+id;
         database.execSQL(QUERY);
     }
 
+    //menghapus data resep
     public void delete(int id){
         SQLiteDatabase database = this.getWritableDatabase();
         String QUERY = "DELETE FROM recipes WHERE id = "+id;

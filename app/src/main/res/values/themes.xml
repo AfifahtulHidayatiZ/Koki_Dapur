@@ -13,27 +13,28 @@
         <item name="colorOnSecondary">@color/black</item>
 
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+        <item name="android:windowBackground">@android:color/white</item>
 
     </style>
 
     <style name="Theme.KokiDapur" parent="Base.Theme.KokiDapur" />
 
-    <style name="Base.Theme.KokiDapur.NoActionBar">
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
-    </style>
+<!--    <style name="Base.Theme.KokiDapur.NoActionBar">-->
+<!--        <item name="windowActionBar">false</item>-->
+<!--        <item name="windowNoTitle">true</item>-->
+<!--    </style>-->
 
-    <style name="toolbartext" parent="TextAppearance.MaterialComponents.Button">
-        <item name="android:textSize">18dp</item>
-        <item name="android:textColor">@color/white</item>
-    </style>
+<!--    <style name="toolbartext" parent="TextAppearance.MaterialComponents.Button">-->
+<!--        <item name="android:textSize">18dp</item>-->
+<!--        <item name="android:textColor">@color/white</item>-->
+<!--    </style>-->
 
-    <style name="Foxandroid.Toolbar" parent="Widget.AppCompat.Toolbar">
-        <item name="background">@color/green_001</item>
-        <item name="theme">@style/Theme.KokiDapur</item>
-        <item name="popupTheme">@style/Theme.Material3.DayNight.NoActionBar</item>
-        <item name="titleTextAppearance">@style/toolbartext</item>
-        <item name="android:spotShadowAlpha">0.5</item>
-        <item name="elevation">20dp</item>
-    </style>
+<!--    <style name="Foxandroid.Toolbar" parent="Widget.AppCompat.Toolbar">-->
+<!--        <item name="background">@color/green_001</item>-->
+<!--        <item name="theme">@style/Theme.KokiDapur</item>-->
+<!--        <item name="popupTheme">@style/Theme.Material3.DayNight.NoActionBar</item>-->
+<!--        <item name="titleTextAppearance">@style/toolbartext</item>-->
+<!--        <item name="android:spotShadowAlpha">0.5</item>-->
+<!--        <item name="elevation">20dp</item>-->
+<!--    </style>-->
 </resources>

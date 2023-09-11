@@ -97,25 +97,31 @@ public class ResepFragment extends Fragment {
         adapter = new Adapter(getActivity(), lists);
         listView.setAdapter(adapter);
 
+        final boolean[] isLongClick = {false};
+
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long l) {
-                final String id = lists.get(position).getId();
-                final String recipe_name = lists.get(position).getRecipe_name();
-                final String material_name = lists.get(position).getMaterial_name();
-                final String instruction = lists.get(position).getInstruction();
-                Intent intent = new Intent(getActivity(), LihatResepActivity.class);
-                intent.putExtra("id", id);
-                intent.putExtra("recipe_name", recipe_name);
-                intent.putExtra("material_name", material_name);
-                intent.putExtra("instruction", instruction);
-                startActivity(intent);
+                if (!isLongClick[0]){
+                    final String id = lists.get(position).getId();
+                    final String recipe_name = lists.get(position).getRecipe_name();
+                    final String material_name = lists.get(position).getMaterial_name();
+                    final String instruction = lists.get(position).getInstruction();
+                    Intent intent = new Intent(getActivity(), LihatResepActivity.class);
+                    intent.putExtra("id", id);
+                    intent.putExtra("recipe_name", recipe_name);
+                    intent.putExtra("material_name", material_name);
+                    intent.putExtra("instruction", instruction);
+                    startActivity(intent);
+                }
+                isLongClick[0] = false;
             }
         });
 
         listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long l) {
+                isLongClick[0] = true;
                 final String id = lists.get(position).getId();
                 final String recipe_name = lists.get(position).getRecipe_name();
                 final String material_name = lists.get(position).getMaterial_name();
@@ -142,7 +148,7 @@ public class ResepFragment extends Fragment {
                         }
                     }
                 }).show();
-                return false;
+                return true; //mengemablikan true agar item longklik tidak mengeksekusi item klik
             }
         });
         getData();
@@ -168,6 +174,7 @@ public class ResepFragment extends Fragment {
         adapter.notifyDataSetChanged();
     }
 
+    //agar data hilang otomatis setelah dihapus
     @Override
     public void onResume() {
         super.onResume();

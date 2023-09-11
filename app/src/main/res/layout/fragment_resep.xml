@@ -7,23 +7,36 @@
     tools:context=".ResepFragment"
     android:background="@color/white">
 
-    <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/AppBarResep"
+<!--    <com.google.android.material.appbar.AppBarLayout-->
+<!--        android:id="@+id/AppBarResep"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content">-->
+
+<!--        <androidx.appcompat.widget.Toolbar-->
+<!--            android:id="@+id/toolbarResep"-->
+<!--            android:background="@color/green_001"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="55dp">-->
+<!--        </androidx.appcompat.widget.Toolbar>-->
+
+<!--    </com.google.android.material.appbar.AppBarLayout>-->
+
+    <TextView
+        android:id="@+id/frgmnresep"
+        android:text="DAFTAR RESEP"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:typeface="serif"
+        android:gravity="center"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="10dp"
+        android:textColor="@color/green_001"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbarResep"
-            android:background="@color/green_001"
-            android:layout_width="match_parent"
-            android:layout_height="55dp">
-        </androidx.appcompat.widget.Toolbar>
-
-    </com.google.android.material.appbar.AppBarLayout>
+        android:layout_height="wrap_content"/>
 
     <LinearLayout
         android:id="@+id/LL"
-        android:layout_below="@id/AppBarResep"
+        android:layout_below="@id/frgmnresep"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">

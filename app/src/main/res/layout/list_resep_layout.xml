@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/card_view_resep"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:backgroundTint="@color/white">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -17,15 +18,15 @@
 
         <ImageView
             android:src="@drawable/background_resep1"
-            android:layout_width="7dp"
-            android:layout_height="55dp"
+            android:layout_width="15dp"
+            android:layout_height="45dp"
             android:layout_marginLeft="10dp"/>
 
         <TextView
             android:id="@+id/NamaResep_List"
             android:text="Ayam bakar"
             android:textColor="@color/black"
-            android:textSize="14sp"
+            android:textSize="15sp"
             android:textStyle="normal"
             android:typeface="serif"
             android:layout_gravity="center_vertical"

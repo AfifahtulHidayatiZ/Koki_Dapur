@@ -65,6 +65,7 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/black"
                 android:textSize="12sp"
+                android:inputType="textCapSentences"
                 android:hint="Minyak Goreng"
                 android:typeface="serif"/>
 
@@ -95,6 +96,7 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/black"
                 android:textSize="12sp"
+                android:inputType="textCapSentences"
                 android:hint="2Kg"
                 android:typeface="serif"/>
 
@@ -111,7 +113,7 @@
             android:layout_gravity="center_horizontal"
             android:background="@drawable/background_button"
             android:layout_marginTop="20dp"
-            android:layout_width="150dp"
+            android:layout_width="340dp"
             android:layout_height="wrap_content"/>
 
     </LinearLayout>
