@@ -11,7 +11,7 @@
         android:layout_height="60dp"
         android:weightSum="1"
         android:orientation="horizontal"
-        android:background="@drawable/background_resep2"
+        android:background="@drawable/unselected_item"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginTop="8dp">

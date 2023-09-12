@@ -41,7 +41,8 @@
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/Tab_Layout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="48dp"
+            app:tabTextAppearance="@style/CustomTabText"
             app:tabGravity="center"
             app:tabMode="scrollable"
             app:tabBackground="@drawable/background_tab"
@@ -90,8 +91,9 @@
         app:menu="@menu/nav_menu"
         app:itemTextColor="@drawable/nav_item_color"
         app:itemIconTint="@drawable/nav_item_color"
+        style="@style/CustomBottomNavTextView"
         android:layout_width="match_parent"
-        android:layout_height="70dp"
+        android:layout_height="56dp"
         />
 
 </LinearLayout>
