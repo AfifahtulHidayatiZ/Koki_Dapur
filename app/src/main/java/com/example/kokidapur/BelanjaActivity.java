@@ -77,17 +77,12 @@ public class BelanjaActivity extends AppCompatActivity {
                                 getDataBelanja();
                                 break;
                             case 2:
-                                dbhelper.updateBelanja(Integer.parseInt(id_bahan), nama_bahan);
+                                dbhelper.updateBahan(Integer.parseInt(id_bahan), nama_bahan);
                                 listbelanja.clear();
                                 getDataBelanja();
                                 Intent resultintent = new Intent();
                                 setResult(BelanjaActivity.RESULT_OK, resultintent);
                                 finish();
-//                                BahanFragment bahanFragment = new BahanFragment();
-//                                getSupportFragmentManager().beginTransaction()
-//                                        .replace(R.id.fragment_container, bahanFragment)
-//                                        .addToBackStack(null)
-//                                        .commit();
                                 break;
                         }
 

@@ -34,6 +34,7 @@ public class TambahDaftarBelanjaActivity extends AppCompatActivity {
             setTitle("Tambah Daftar Belanja");
         }else {
             setTitle("Edit Daftar Belanja");
+            editnama_belanja.setText(nama_bahan);
         }
 
         btnSimpanBelanja.setOnClickListener(new View.OnClickListener() {

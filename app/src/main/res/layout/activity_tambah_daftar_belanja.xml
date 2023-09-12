@@ -65,7 +65,7 @@
                 android:textColor="@color/black"
                 android:textSize="12sp"
                 android:inputType="textCapSentences"
-                android:hint="Minyak Goreng"
+                android:hint="Nama Bahan"
                 android:typeface="serif"/>
 
 

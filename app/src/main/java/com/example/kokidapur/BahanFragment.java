@@ -44,7 +44,6 @@ public class BahanFragment extends Fragment {
     List<DataBahan> listBahan = new ArrayList<>();
     AdapterBahan adapterBahan;
     Helper dbhelper;
-    private ActivityResultLauncher<Intent> launcher;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -146,17 +145,6 @@ public class BahanFragment extends Fragment {
             }
         });
         getDataBahan();
-
-        registerForActivityResult(
-                new ActivityResultContracts.StartActivityForResult(),
-                new ActivityResultCallback<ActivityResult>() {
-                    @Override
-                    public void onActivityResult(ActivityResult result) {
-                        getDataBahan();
-                        Log.d("Testing", result.toString());
-                    }
-                }
-        );
 
         return root;
     }
