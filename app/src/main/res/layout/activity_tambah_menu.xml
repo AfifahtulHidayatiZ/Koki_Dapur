@@ -64,7 +64,6 @@
 
         <LinearLayout
             android:weightSum="1"
-            android:layout_weight="1"
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -85,15 +84,16 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:orientation="horizontal"
+                android:gravity="center_horizontal"
                 android:weightSum="1">
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_weight="1"
                     android:id="@+id/InputNamaMenu"
-                    android:layout_marginTop="10dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
@@ -122,14 +122,17 @@
 
             </LinearLayout>
 
-            <androidx.recyclerview.widget.RecyclerView
+            <ListView
                 android:id="@+id/ListTambahn_Menu"
+                android:layout_weight="1"
+                android:divider="@color/white"
                 android:typeface="serif"
                 android:layout_marginTop="10dp"
                 android:layout_marginRight="10dp"
                 android:layout_marginLeft="10dp"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="250dp"
+                tools:listitem="@layout/list_menu_layout"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -152,7 +155,7 @@
 
                 <com.google.android.material.floatingactionbutton.FloatingActionButton
                     android:layout_weight="1"
-                    android:id="@+id/foatingTambahBahan"
+                    android:id="@+id/floatingTambahBahan"
                     android:layout_gravity="center_vertical"
                     android:backgroundTint="@color/green_001"
                     android:src="@drawable/floating_add"
@@ -165,14 +168,17 @@
 
 
 
-            <androidx.recyclerview.widget.RecyclerView
+            <ListView
                 android:id="@+id/ListTambah_Bahan"
+                android:layout_weight="1"
+                android:divider="@color/white"
                 android:typeface="serif"
                 android:layout_marginTop="5dp"
                 android:layout_marginRight="10dp"
                 android:layout_marginLeft="10dp"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="250dp"
+                tools:listitem="@layout/list_bahan_layout"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -195,7 +201,7 @@
 
                 <com.google.android.material.floatingactionbutton.FloatingActionButton
                     android:layout_weight="1"
-                    android:id="@+id/foatingTambahResep"
+                    android:id="@+id/floatingTambahResep"
                     android:layout_gravity="center_vertical"
                     android:backgroundTint="@color/green_001"
                     android:src="@drawable/floating_add"
@@ -207,14 +213,17 @@
 
             </LinearLayout>
 
-            <androidx.recyclerview.widget.RecyclerView
+            <ListView
                 android:id="@+id/ListTambah_Resep"
+                android:layout_weight="1"
+                android:divider="@color/white"
                 android:typeface="serif"
                 android:layout_marginTop="5dp"
                 android:layout_marginRight="10dp"
                 android:layout_marginLeft="10dp"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="250dp"
+                tools:listitem="@layout/list_resep_layout"/>
 
         </LinearLayout>
 

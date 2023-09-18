@@ -108,19 +108,23 @@ public class BelanjaActivity extends AppCompatActivity {
     }
 
 
+    //kembali ke fragment bahan
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == android.R.id.home){
-            FragmentManager fragmentManager = getSupportFragmentManager();
-            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-            Fragment bahanFragment = new BahanFragment();
-            fragmentTransaction.replace(R.id.fragment_container, bahanFragment);
-            fragmentTransaction.commit();
+//            FragmentManager fragmentManager = getSupportFragmentManager();
+//            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+//            Fragment bahanFragment = new BahanFragment();
+//            fragmentTransaction.replace(R.id.fragment_container, bahanFragment);
+//            fragmentTransaction.commit();
+            getSupportFragmentManager().popBackStack();
             return true;
         }
 
         return super.onOptionsItemSelected(item);
     }
+
+
 
     private void getDataBelanja() {
         ArrayList<HashMap<String, String>> rows = dbhelper.getAllBelanja();

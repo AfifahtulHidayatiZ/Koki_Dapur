@@ -193,8 +193,6 @@ public class BahanFragment extends Fragment {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
         if (id == R.id.item_daftar_belanja){
-            Toast.makeText(requireContext(), "Ikon ACTION BAR", Toast.LENGTH_SHORT).show();
-
             Intent intent = new Intent(requireContext(), BelanjaActivity.class);
             startActivity(intent);
             return true;
