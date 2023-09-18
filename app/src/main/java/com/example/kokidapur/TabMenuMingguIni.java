@@ -4,9 +4,18 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
+
+import com.example.kokidapur.adapter.AdapterTanggal;
+
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Locale;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -14,6 +23,11 @@ import android.view.ViewGroup;
  * create an instance of this fragment.
  */
 public class TabMenuMingguIni extends Fragment {
+    private ListView listView;
+    private AdapterTanggal adapterTanggal;
+    private ArrayList<String> days = new ArrayList<>();
+    private ArrayList<String> dates = new ArrayList<>();
+
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -59,6 +73,49 @@ public class TabMenuMingguIni extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_tab_menu_minggu_ini, container, false);
+        View root = inflater.inflate(R.layout.fragment_tab_menu_minggu_ini, container, false);
+
+        listView = root.findViewById(R.id.LV_MenuMingguIni);
+        adapterTanggal = new AdapterTanggal(getActivity(), days, dates);
+        listView.setAdapter(adapterTanggal);
+
+        //Mengisi data dari dan tanggal untuk 1 Minggu
+        Calendar calendar = Calendar.getInstance();
+        SimpleDateFormat dayFormat = new SimpleDateFormat("EEEE", Locale.getDefault());
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd MMMM yyyy", Locale.getDefault());
+        for (int i=0; i<7; i++){
+            String day = dayFormat.format(calendar.getTime());
+            String date = dateFormat.format(calendar.getTime());
+
+            days.add(day);
+            dates.add(date);
+
+            //Maju 1 minggu
+            calendar.add(Calendar.DAY_OF_MONTH, 1);
+        }
+
+        adapterTanggal.notifyDataSetChanged();
+
+//        Handler handler = new Handler();
+//        handler.postDelayed(new Runnable() {
+//            @Override
+//            public void run() {
+//                Calendar calendar = Calendar.getInstance();
+//                SimpleDateFormat dayFormat = new SimpleDateFormat("EEEE", Locale.getDefault());
+//                SimpleDateFormat dateFormat = new SimpleDateFormat("dd MMMM yyyy", Locale.getDefault());
+//                String day = dayFormat.format(calendar.getTime());
+//                String date = dateFormat.format(calendar.getTime());
+//
+//                days.add(day);
+//                dates.add(date);
+//
+//                adapterTanggal.notifyDataSetChanged();
+//
+//                handler.postDelayed(this, 1000);
+//
+//            }
+//        }, 0);
+
+        return root;
     }
 }

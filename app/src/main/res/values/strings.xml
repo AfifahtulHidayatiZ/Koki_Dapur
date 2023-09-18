@@ -11,5 +11,6 @@
 
     <string name="daftar_belanja">Daftar Belanja</string>
     <string name="hapus">Hapus</string>
+    <string name="edit">Edit</string>
 
 </resources>

@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-    <item android:id="@+id/daftar_belanja"
+    <item android:id="@+id/resep_edit"
+        android:icon="@drawable/baseline_edit"
+        android:title="@string/edit"
+        app:showAsAction="always"/>
+    <item android:id="@+id/resep_delete"
         android:icon="@drawable/delete"
         android:title="@string/hapus"
         app:showAsAction="always"/>

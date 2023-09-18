@@ -11,15 +11,16 @@
         android:layout_height="60dp"
         android:weightSum="1"
         android:orientation="horizontal"
+        android:gravity="center_vertical"
         android:background="@drawable/unselected_item"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginTop="8dp">
 
         <ImageView
-            android:src="@drawable/background_resep1"
-            android:layout_width="15dp"
-            android:layout_height="45dp"
+            android:src="@drawable/ikon_listresep"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:layout_marginLeft="10dp"/>
 
         <TextView

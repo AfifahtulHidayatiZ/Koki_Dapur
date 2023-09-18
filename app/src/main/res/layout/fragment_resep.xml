@@ -7,22 +7,24 @@
     tools:context=".ResepFragment"
     android:background="@color/white">
 
-<!--    <com.google.android.material.appbar.AppBarLayout-->
-<!--        android:id="@+id/AppBarResep"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content">-->
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/AppBarResep"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-<!--        <androidx.appcompat.widget.Toolbar-->
-<!--            android:id="@+id/toolbarResep"-->
-<!--            android:background="@color/green_001"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="55dp">-->
-<!--        </androidx.appcompat.widget.Toolbar>-->
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbarResep"
+            android:background="@color/green_001"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            app:menu="@menu/action_menu_resep">
+        </androidx.appcompat.widget.Toolbar>
 
-<!--    </com.google.android.material.appbar.AppBarLayout>-->
+    </com.google.android.material.appbar.AppBarLayout>
 
     <TextView
         android:id="@+id/frgmnresep"
+        android:layout_below="@id/AppBarResep"
         android:text="DAFTAR RESEP"
         android:textSize="18sp"
         android:textStyle="bold"

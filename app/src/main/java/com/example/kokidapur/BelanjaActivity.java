@@ -1,16 +1,22 @@
 package com.example.kokidapur;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.kokidapur.R;
 import com.example.kokidapur.adapter.AdapterBahan;
@@ -29,12 +35,17 @@ public class BelanjaActivity extends AppCompatActivity {
     AdapterBahan adapterBahan;
     private Helper dbhelper = new Helper(this);
 
-//    ActionBar actionBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_belanja);
+
+
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null){
+            actionBar.setDisplayHomeAsUpEnabled(true);
+        }
 
         dbhelper = new Helper(this);
 
@@ -80,10 +91,11 @@ public class BelanjaActivity extends AppCompatActivity {
                                 dbhelper.updateBahan(Integer.parseInt(id_bahan), nama_bahan);
                                 listbelanja.clear();
                                 getDataBelanja();
-                                Intent resultintent = new Intent();
-                                setResult(BelanjaActivity.RESULT_OK, resultintent);
-                                finish();
-                                break;
+                                Toast.makeText(BelanjaActivity.this, "Ditambahkan Ke Daftar Bahan", Toast.LENGTH_SHORT).show();
+//                                Intent resultintent = new Intent();
+//                                setResult(BelanjaActivity.RESULT_OK, resultintent);
+//                                finish();
+//                                break;
                         }
 
                     }
@@ -93,10 +105,21 @@ public class BelanjaActivity extends AppCompatActivity {
         });
         getDataBelanja();
 
+    }
 
 
-//        actionBar = getSupportActionBar();
-//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == android.R.id.home){
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            Fragment bahanFragment = new BahanFragment();
+            fragmentTransaction.replace(R.id.fragment_container, bahanFragment);
+            fragmentTransaction.commit();
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
     private void getDataBelanja() {
@@ -119,15 +142,4 @@ public class BelanjaActivity extends AppCompatActivity {
         listbelanja.clear();
         getDataBelanja();
     }
-
-//    @Override
-//    public boolean onSupportNavigateUp() {
-//        onBackPressed();
-//        return true;
-//    }
-//
-//    @Override
-//    public void onBackPressed() {
-//        super.onBackPressed();
-//    }
 }

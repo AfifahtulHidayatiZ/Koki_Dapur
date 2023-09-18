@@ -22,6 +22,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.example.kokidapur.adapter.AdapterBahan;
 import com.example.kokidapur.helper.Helper;
@@ -83,17 +84,26 @@ public class BahanFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
-        //pindah halaman belanja
-        setHasOptionsMenu(true);
-
+//        //pindah halaman belanja
+//        setHasOptionsMenu(true);
+//
 
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         View root = inflater.inflate(R.layout.fragment_bahan, container, false);
+
+//        //pindah ke daftar belanja
+//        Toolbar toolbar = root.findViewById(R.id.toolbarBahan);
+//        toolbar.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(requireContext(), BelanjaActivity.class);
+//                startActivity(intent);
+//            }
+//        });
 
         dbhelper = new Helper(getActivity().getApplicationContext());
         FloatingActionButton fabBahan = (FloatingActionButton) root.findViewById(R.id.floatingBahan);
@@ -136,6 +146,7 @@ public class BahanFragment extends Fragment {
                                 dbhelper.updateBelanja(Integer.parseInt(id_bahan), nama_bahan);
                                 listBahan.clear();
                                 getDataBahan();
+                                Toast.makeText(getActivity(), "Ditambahkan Ke Daftar Belanja", Toast.LENGTH_SHORT).show();
                                 Intent intenbelanja = new Intent(getActivity(), BelanjaActivity.class);
                                 startActivity(intenbelanja);
                         }
@@ -178,12 +189,13 @@ public class BahanFragment extends Fragment {
         super.onCreateOptionsMenu(menu, inflater);
     }
 
-    //back
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
         if (id == R.id.item_daftar_belanja){
-            Intent intent = new Intent(getActivity(), BelanjaActivity.class);
+            Toast.makeText(requireContext(), "Ikon ACTION BAR", Toast.LENGTH_SHORT).show();
+
+            Intent intent = new Intent(requireContext(), BelanjaActivity.class);
             startActivity(intent);
             return true;
         }
