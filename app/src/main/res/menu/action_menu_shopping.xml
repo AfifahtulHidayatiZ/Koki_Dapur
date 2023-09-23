@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
     <item
         android:id="@+id/item_daftar_belanja"
-        android:icon="@drawable/shopping_cart"
+        android:icon="@drawable/list_shopping"
         android:title="@string/daftar_belanja"
         app:showAsAction="always"/>
 </menu>

@@ -16,8 +16,7 @@
             android:id="@+id/toolbarBahan"
             android:background="@color/green_001"
             android:layout_width="match_parent"
-            android:layout_height="55dp"
-            app:menu="@menu/action_menu_shopping"/>
+            android:layout_height="55dp"/>
 
     </com.google.android.material.appbar.AppBarLayout>
 

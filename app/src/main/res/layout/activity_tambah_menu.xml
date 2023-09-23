@@ -12,19 +12,18 @@
         android:orientation="vertical"
         android:weightSum="1">
 
-        <!--        <com.google.android.material.appbar.AppBarLayout-->
-        <!--            android:id="@+id/AppBarTambahMenu"-->
-        <!--            android:layout_width="match_parent"-->
-        <!--            android:layout_height="wrap_content">-->
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/AppBarTambahMenu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-        <!--            <androidx.appcompat.widget.Toolbar-->
-        <!--                android:id="@+id/toolbarTambahMenu"-->
-        <!--                android:background="@color/green_001"-->
-        <!--                style="@style/Foxandroid.Toolbar"-->
-        <!--                app:navigationIcon="@drawable/back"-->
-        <!--                android:layout_width="match_parent"-->
-        <!--                android:layout_height="55dp"/>-->
-        <!--        </com.google.android.material.appbar.AppBarLayout>-->
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/tbTambahMenu"
+                android:background="@color/green_001"
+                app:navigationIcon="@drawable/back"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"/>
+        </com.google.android.material.appbar.AppBarLayout>
 
 
         <LinearLayout
@@ -93,15 +92,17 @@
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_weight="1"
-                    android:id="@+id/InputNamaMenu"
+                    android:id="@+id/InputLayoutNamaMenu"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
                     <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/InputNamaMenu"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textColor="@color/black"
-                        android:textSize="12sp"
+                        android:textSize="15sp"
+                        android:inputType="textCapSentences"
                         android:hint="Nama Menu"
                         android:typeface="serif"/>
 
@@ -110,7 +111,7 @@
 
                 <com.google.android.material.floatingactionbutton.FloatingActionButton
                     android:layout_weight="1"
-                    android:id="@+id/foatingTambahMenu"
+                    android:id="@+id/floatingTambahMenu"
                     android:layout_gravity="center_vertical"
                     android:backgroundTint="@color/green_001"
                     android:src="@drawable/floating_add"
@@ -123,8 +124,7 @@
             </LinearLayout>
 
             <ListView
-                android:id="@+id/ListTambahn_Menu"
-                android:layout_weight="1"
+                android:id="@+id/ListTambah_Menu"
                 android:divider="@color/white"
                 android:typeface="serif"
                 android:layout_marginTop="10dp"
@@ -226,6 +226,23 @@
                 tools:listitem="@layout/list_resep_layout"/>
 
         </LinearLayout>
+
+
+<!--        <Button-->
+<!--            android:id="@+id/Btn_Simpan_Menu"-->
+<!--            android:text="Simpan"-->
+<!--            android:textColor="@color/white"-->
+<!--            android:textSize="13sp"-->
+<!--            android:textStyle="bold"-->
+<!--            android:typeface="serif"-->
+<!--            android:layout_gravity="center_horizontal"-->
+<!--            android:background="@drawable/background_button"-->
+<!--            android:layout_marginTop="25dp"-->
+<!--            android:layout_marginStart="10dp"-->
+<!--            android:layout_marginEnd="10dp"-->
+<!--            android:layout_marginBottom="16dp"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"/>-->
 
     </LinearLayout>
 

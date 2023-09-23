@@ -25,6 +25,15 @@ public class TambahResepActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tambah_resep);
+        ActionBar actionBar = getSupportActionBar();
+        View appBar = findViewById(R.id.tbTambahResep);
+        appBar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
+
         editnama_resep = findViewById(R.id.InputNamaResep);
         editnama_bahan = findViewById(R.id.InputNamaBahanBahan);
         editcara_membuat = findViewById(R.id.InputCaraMembuat);

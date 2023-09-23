@@ -1,15 +1,16 @@
 package com.example.kokidapur.model;
 
 public class DataBahan {
-    private String id_bahan, nama_bahan, status;
+    private String id_bahan, nama_bahan, jumlah, status;
 
     public DataBahan() {
 
     }
 
-    public DataBahan(String id_bahan, String nama_bahan, String status) {
+    public DataBahan(String id_bahan, String nama_bahan, String jumlah, String status) {
         this.id_bahan = id_bahan;
         this.nama_bahan = nama_bahan;
+        this.jumlah = jumlah;
         this.status = status;
     }
 
@@ -27,6 +28,14 @@ public class DataBahan {
 
     public void setNama_bahan(String nama_bahan) {
         this.nama_bahan = nama_bahan;
+    }
+
+    public String getJumlah() {
+        return jumlah;
+    }
+
+    public void setJumlah(String jumlah) {
+        this.jumlah = jumlah;
     }
 
     public String getStatus() {

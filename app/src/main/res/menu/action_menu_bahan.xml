@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item android:id="@+id/bb_edit"
+        android:icon="@drawable/baseline_edit"
+        android:title="@string/edit"
+        app:showAsAction="always"/>
+    <item android:id="@+id/bb_tbhbelanja"
+        android:icon="@drawable/shopping_cart"
+        android:title="@string/tambah_belanja"
+        app:showAsAction="always"/>
+    <item android:id="@+id/bb_delete"
+        android:icon="@drawable/delete"
+        android:title="@string/hapus"
+        app:showAsAction="always"/>
+
+</menu>

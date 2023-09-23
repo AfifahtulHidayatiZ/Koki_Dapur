@@ -1,8 +1,10 @@
 package com.example.kokidapur;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
 
 import com.example.kokidapur.helper.Helper;
@@ -16,6 +18,15 @@ public class LihatResepActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lihat_resep);
+        ActionBar actionBar = getSupportActionBar();
+        View appBar = findViewById(R.id.tbLihatResep);
+        appBar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
+
         namaresep = findViewById(R.id.txt_NamaResep);
         namabahan = findViewById(R.id.txt_NamaBahanBahan);
         caramembuat = findViewById(R.id.txt_CaraMembuat);

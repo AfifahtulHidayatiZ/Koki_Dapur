@@ -35,8 +35,7 @@
             android:textStyle="bold"
             android:typeface="serif"
             android:layout_gravity="center_horizontal"
-            android:padding="25dp"
-            android:layout_marginTop="20dp"/>
+            android:padding="40dp"/>
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/Tab_Layout"
@@ -48,7 +47,7 @@
             app:tabBackground="@drawable/background_tab"
             app:tabIconTint="@color/green"
             app:tabIndicatorColor="@color/softgreen"
-            android:backgroundTint="@color/green_001"
+            android:background="@drawable/backgournd_tab"
             app:tabSelectedTextColor="@color/white">
 
             <com.google.android.material.tabs.TabItem

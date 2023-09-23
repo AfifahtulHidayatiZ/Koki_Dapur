@@ -22,6 +22,16 @@ public class TambahBahanActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tambah_bahan);
+
+        ActionBar actionBar = getSupportActionBar();
+        View appBar = findViewById(R.id.tbTambahBahan);
+        appBar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
+
         editnama_bahan = findViewById(R.id.InputNamaBahan);
         btnSimpanBahan = findViewById(R.id.Btn_Simpan_Bahan);
 

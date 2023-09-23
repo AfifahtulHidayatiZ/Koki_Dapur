@@ -11,19 +11,18 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <!--        <com.google.android.material.appbar.AppBarLayout-->
-        <!--            android:id="@+id/AppBarTambahBahan"-->
-        <!--            android:layout_width="match_parent"-->
-        <!--            android:layout_height="wrap_content">-->
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/AppBarTambahBahan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-        <!--            <androidx.appcompat.widget.Toolbar-->
-        <!--                android:id="@+id/toolbarTambahBahan"-->
-        <!--                android:background="@color/green_001"-->
-        <!--                style="@style/Foxandroid.Toolbar"-->
-        <!--                app:navigationIcon="@drawable/back"-->
-        <!--                android:layout_width="match_parent"-->
-        <!--                android:layout_height="55dp"/>-->
-        <!--        </com.google.android.material.appbar.AppBarLayout>-->
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/tbLihatResep"
+                android:background="@color/green_001"
+                app:navigationIcon="@drawable/back"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"/>
+        </com.google.android.material.appbar.AppBarLayout>
 
         <TextView
             android:id="@+id/txt_NamaResep"

@@ -1,5 +1,6 @@
 package com.example.kokidapur;
 
+import android.app.ActionBar;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -84,9 +85,6 @@ public class BahanFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
-//        //pindah halaman belanja
-//        setHasOptionsMenu(true);
-//
 
     }
 
@@ -95,15 +93,20 @@ public class BahanFragment extends Fragment {
                              Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_bahan, container, false);
 
-//        //pindah ke daftar belanja
-//        Toolbar toolbar = root.findViewById(R.id.toolbarBahan);
-//        toolbar.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(requireContext(), BelanjaActivity.class);
-//                startActivity(intent);
-//            }
-//        });
+        //pindah ke daftar belanja
+        Toolbar toolbar = root.findViewById(R.id.toolbarBahan);
+        toolbar.inflateMenu(R.menu.action_menu_shopping);
+        toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                if (item.getItemId() ==R.id.item_daftar_belanja){
+                    Intent intent = new Intent(getActivity(), BelanjaActivity.class);
+                    startActivity(intent);
+                    return true;
+                }
+                return false;
+            }
+        });
 
         dbhelper = new Helper(getActivity().getApplicationContext());
         FloatingActionButton fabBahan = (FloatingActionButton) root.findViewById(R.id.floatingBahan);
@@ -123,7 +126,13 @@ public class BahanFragment extends Fragment {
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
                 final String id_bahan = listBahan.get(position).getId_bahan();
                 final String nama_bahan = listBahan.get(position).getNama_bahan();
+                final String jumlah = listBahan.get(position).getJumlah();
                 final String status = listBahan.get(position).getStatus();
+//
+//                Toolbar toolbar1 = root.findViewById(R.id.toolbarBahan);
+//                toolbar1.inflateMenu(R.menu.action_menu_bahan);
+//
+
                 final CharSequence[] dialogItem = {"Edit", "Hapus","Tambah Keranjang"};
                 dialog = new AlertDialog.Builder(getActivity());
                 dialog.setItems(dialogItem, new DialogInterface.OnClickListener() {
@@ -143,12 +152,12 @@ public class BahanFragment extends Fragment {
                                 getDataBahan();
                                 break;
                             case 2:
-                                dbhelper.updateBelanja(Integer.parseInt(id_bahan), nama_bahan);
+                                dbhelper.updateBelanja(Integer.parseInt(id_bahan), nama_bahan, jumlah);
                                 listBahan.clear();
                                 getDataBahan();
                                 Toast.makeText(getActivity(), "Ditambahkan Ke Daftar Belanja", Toast.LENGTH_SHORT).show();
-                                Intent intenbelanja = new Intent(getActivity(), BelanjaActivity.class);
-                                startActivity(intenbelanja);
+//                                Intent intenbelanja = new Intent(getActivity(), BelanjaActivity.class);
+//                                startActivity(intenbelanja);
                         }
                     }
                 }).show();
@@ -181,22 +190,4 @@ public class BahanFragment extends Fragment {
         getDataBahan();
     }
 
-
-    //pindah ke halaman belanja
-    @Override
-    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
-        inflater.inflate(R.menu.action_menu_shopping, menu); //toolbar menu pada file menu
-        super.onCreateOptionsMenu(menu, inflater);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        int id = item.getItemId();
-        if (id == R.id.item_daftar_belanja){
-            Intent intent = new Intent(requireContext(), BelanjaActivity.class);
-            startActivity(intent);
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
 }
