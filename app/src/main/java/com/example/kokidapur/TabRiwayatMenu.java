@@ -9,6 +9,20 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.DatePicker;
+
+import com.example.kokidapur.adapter.AdapterMRB;
+import com.example.kokidapur.helper.Helper;
+import com.example.kokidapur.model.DataMRB;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Locale;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -16,6 +30,11 @@ import android.widget.Button;
  * create an instance of this fragment.
  */
 public class TabRiwayatMenu extends Fragment {
+    DatePicker datePicker;
+    List<DataMRB> dataMRBList = new ArrayList<>();
+    AdapterMRB adapterMRB;
+    Helper dbhelper = new Helper(getActivity());
+    private String newformat;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -62,15 +81,44 @@ public class TabRiwayatMenu extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View root =  inflater.inflate(R.layout.fragment_tab_riwayat_menu, container, false);
+        dbhelper = new Helper(getActivity().getApplicationContext());
 
-        Button btnriwayat = (Button) root.findViewById(R.id.Btn_RiwayatMenu);
-        btnriwayat.setOnClickListener(new View.OnClickListener() {
+        datePicker = root.findViewById(R.id.Tanggal_Riwayat);
+        adapterMRB = new AdapterMRB(getActivity(),dataMRBList);
+
+        datePicker.setOnDateChangedListener(new DatePicker.OnDateChangedListener() {
             @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), RiwayatMenuActivity.class);
-                startActivity(intent);
+            public void onDateChanged(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+                String selectedDate = String.format(Locale.getDefault(), "%04d-%02d-%02d", year, monthOfYear+1, dayOfMonth);
+                getDataMenu(selectedDate);
+                Intent intent = new Intent(getActivity(), DetailMenu.class);
+                intent.putExtra("selectedDate", selectedDate);
+//                startActivity(intent);
             }
         });
+
         return root;
+    }
+
+    private void getDataMenu(String tanggal) {
+        ArrayList<HashMap<String, String>> rows = dbhelper.getTanggalMenu(tanggal);
+        dataMRBList.clear();
+        for(int i=0; i< rows.size(); i++){
+            String id = rows.get(i).get("id_menu");
+            String nama = rows.get(i).get("nama_menu");
+
+            DataMRB dataMRB = new DataMRB();
+            dataMRB.setId_menu(id);
+            dataMRB.setNama_menu(nama);
+
+            dataMRBList.add(dataMRB);
+        }
+        adapterMRB.notifyDataSetChanged();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        dataMRBList.clear();
     }
 }

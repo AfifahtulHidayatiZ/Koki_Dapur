@@ -4,6 +4,8 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -18,7 +20,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.kokidapur.adapter.Adapter;
@@ -132,28 +136,41 @@ public class ResepFragment extends Fragment {
                 final String recipe_name = lists.get(position).getRecipe_name();
                 final String material_name = lists.get(position).getMaterial_name();
                 final String instruction = lists.get(position).getInstruction();
-                final CharSequence[] dialoguItem = {"Edit", "Hapus"};
-                dialog = new AlertDialog.Builder(getActivity());
-                dialog.setItems(dialoguItem, new DialogInterface.OnClickListener() {
+
+                AlertDialog.Builder alertDB =new AlertDialog.Builder(getActivity());
+                View dialogView = getLayoutInflater().inflate(R.layout.custom_dialog_resep, null);
+                alertDB.setView(dialogView);
+
+                AlertDialog alertDialog = alertDB.create();
+                TextView dialogTitle = dialogView.findViewById(R.id.Title_dialog);
+                Button editbtn = dialogView.findViewById(R.id.BtnEdit);
+                Button deletbtn = dialogView.findViewById(R.id.BtnHapus);
+                alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                dialogTitle.setText("Resep "+recipe_name);
+
+                editbtn.setOnClickListener(new View.OnClickListener() {
                     @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        switch (which){
-                            case 0:
-                                Intent intent = new Intent(getActivity(),TambahResepActivity.class);
-                                intent.putExtra("id", id);
-                                intent.putExtra("recipe_name", recipe_name);
-                                intent.putExtra("material_name", material_name);
-                                intent.putExtra("instruction", instruction);
-                                startActivity(intent);
-                                break;
-                            case 1:
-                                dbhelper.delete(Integer.parseInt(id));
-                                lists.clear();
-                                getData();
-                                break;
-                        }
+                    public void onClick(View v) {
+                        Intent intent = new Intent(getActivity(),TambahResepActivity.class);
+                        intent.putExtra("id", id);
+                        intent.putExtra("recipe_name", recipe_name);
+                        intent.putExtra("material_name", material_name);
+                        intent.putExtra("instruction", instruction);
+                        startActivity(intent);
+                        alertDialog.dismiss();
                     }
-                }).show();
+                });
+
+                deletbtn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dbhelper.delete(Integer.parseInt(id));
+                        lists.clear();
+                        getData();
+                        alertDialog.dismiss();
+                    }
+                });
+                alertDialog.show();
                 return true; //mengemablikan true agar item longklik tidak mengeksekusi item klik
             }
         });

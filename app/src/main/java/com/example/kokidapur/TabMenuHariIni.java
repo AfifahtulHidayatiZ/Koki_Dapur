@@ -1,21 +1,32 @@
 package com.example.kokidapur;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
 import android.os.Handler;
 import android.os.Looper;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ListView;
 import android.widget.TextView;
 
+import com.example.kokidapur.adapter.AdapterMRB;
 import com.example.kokidapur.adapter.AdapterTanggal;
+import com.example.kokidapur.helper.Helper;
+import com.example.kokidapur.model.DataMRB;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Locale;
 
 /**
@@ -27,6 +38,12 @@ public class TabMenuHariIni extends Fragment {
     private TextView DayView, DateView;
     private Handler handler;
     private Runnable updateRunable;
+    List<DataMRB> dataMRBList = new ArrayList<>();
+    AdapterMRB adapterMRB;
+    Helper dbhelper = new Helper(getActivity());
+    ListView listViewMenu;
+    private String newformat;
+
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -74,25 +91,64 @@ public class TabMenuHariIni extends Fragment {
         // Inflate the layout for this fragment
         View root = inflater.inflate(R.layout.fragment_tab_menu_hari_ini, container, false);
 
+        dbhelper = new Helper(getActivity().getApplicationContext());
         DayView = root.findViewById(R.id.TglHari_Home_Harini);
         DateView = root.findViewById(R.id.Tgl_Home_Harini);
 
         handler = new Handler(Looper.getMainLooper());
 
+        updateDateTime();
         updateRunable = new Runnable() {
             @Override
             public void run() {
-                updateDateTime();
                 handler.postDelayed(this, 1000);
             }
         };
 
+        listViewMenu = root.findViewById(R.id.List_HariIniMenu);
+        adapterMRB = new AdapterMRB(getActivity(), dataMRBList);
+        listViewMenu.setAdapter(adapterMRB);
+        getDataMenu(newformat);
+        Log.d("Lihat Hari", newformat);
+
+        listViewMenu.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                final String id_menumrb = dataMRBList.get(position).getId_menu();
+                final String nama_menumrb = dataMRBList.get(position).getNama_menu();
+                Intent intent = new Intent(getActivity(), DetailMenu.class);
+                intent.putExtra("id_menu", id_menumrb);
+                intent.putExtra("nama_menu", nama_menumrb);
+                startActivity(intent);
+            }
+        });
+
         return root;
     }
+
+    private void getDataMenu(String tanggal) {
+        ArrayList<HashMap<String, String>> rows = dbhelper.getTanggalMenu(tanggal);
+        dataMRBList.clear();
+        for(int i=0; i< rows.size(); i++){
+            String id = rows.get(i).get("id_menu");
+            String nama = rows.get(i).get("nama_menu");
+
+            DataMRB dataMRB = new DataMRB();
+            dataMRB.setId_menu(id);
+            dataMRB.setNama_menu(nama);
+
+            dataMRBList.add(dataMRB);
+        }
+        adapterMRB.notifyDataSetChanged();
+    }
+
+
 
     @Override
     public void onResume() {
         super.onResume();
+        dataMRBList.clear();
+        getDataMenu(newformat);
         handler.post(updateRunable);
     }
 
@@ -112,5 +168,13 @@ public class TabMenuHariIni extends Fragment {
 
         DateView.setText(date);
         DayView.setText(day);
+
+        try {
+            Date datevalue = dateFormat.parse(date);
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            newformat = sdf.format(datevalue);
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

@@ -1,16 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".TambahMenuActivity">
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:weightSum="1">
+    tools:context=".TambahMenuActivity"
+    android:orientation="vertical">
 
         <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/AppBarTambahMenu"
@@ -62,169 +57,79 @@
 
 
         <LinearLayout
-            android:weightSum="1"
-            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp">
-            <TextView
-                android:text="Menu"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                android:textColor="@color/green_001"
-                android:typeface="serif"
-                android:layout_marginRight="10dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="15dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+            android:layout_marginRight="10dp"
+            android:orientation="vertical"
+            android:weightSum="1">
+
+<!--            <TextView-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginLeft="10dp"-->
+<!--                android:layout_marginTop="15dp"-->
+<!--                android:layout_marginRight="10dp"-->
+<!--                android:text="Menu"-->
+<!--                android:textColor="@color/green_001"-->
+<!--                android:textSize="16sp"-->
+<!--                android:textStyle="bold"-->
+<!--                android:typeface="serif" />-->
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
                 android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginRight="10dp"
-                android:orientation="horizontal"
                 android:gravity="center_horizontal"
+                android:orientation="horizontal"
                 android:weightSum="1">
 
                 <com.google.android.material.textfield.TextInputLayout
-                    android:layout_weight="1"
                     android:id="@+id/InputLayoutNamaMenu"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/InputNamaMenu"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:hint="Nama Menu"
+                        android:inputType="textCapWords"
                         android:textColor="@color/black"
                         android:textSize="15sp"
-                        android:inputType="textCapSentences"
-                        android:hint="Nama Menu"
-                        android:typeface="serif"/>
+                        android:typeface="serif" />
 
 
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.floatingactionbutton.FloatingActionButton
-                    android:layout_weight="1"
                     android:id="@+id/floatingTambahMenu"
-                    android:layout_gravity="center_vertical"
-                    android:backgroundTint="@color/green_001"
-                    android:src="@drawable/floating_add"
-                    android:contentDescription="Tambah Menu"
-                    app:fabCustomSize="40dp"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:backgroundTint="@color/green_001"
+                    android:contentDescription="Tambah Menu"
+                    android:src="@drawable/floating_add"
+                    app:fabCustomSize="40dp" />
 
 
             </LinearLayout>
 
             <ListView
                 android:id="@+id/ListTambah_Menu"
-                android:divider="@color/white"
-                android:typeface="serif"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="10dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginRight="10dp"
-                android:layout_marginLeft="10dp"
-                android:layout_width="match_parent"
-                android:layout_height="250dp"
-                tools:listitem="@layout/list_menu_layout"/>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginRight="10dp"
-                android:layout_marginLeft="10dp"
-                android:weightSum="1">
-
-                <TextView
-                    android:layout_weight="1"
-                    android:text="Bahan"
-                    android:textSize="16sp"
-                    android:textStyle="bold"
-                    android:textColor="@color/green_001"
-                    android:typeface="serif"
-                    android:layout_marginTop="15dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
-
-                <com.google.android.material.floatingactionbutton.FloatingActionButton
-                    android:layout_weight="1"
-                    android:id="@+id/floatingTambahBahan"
-                    android:layout_gravity="center_vertical"
-                    android:backgroundTint="@color/green_001"
-                    android:src="@drawable/floating_add"
-                    android:contentDescription="Tambah Menu"
-                    app:fabCustomSize="40dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
-
-            </LinearLayout>
-
-
-
-            <ListView
-                android:id="@+id/ListTambah_Bahan"
                 android:layout_weight="1"
                 android:divider="@color/white"
                 android:typeface="serif"
-                android:layout_marginTop="5dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginLeft="10dp"
-                android:layout_width="match_parent"
-                android:layout_height="250dp"
-                tools:listitem="@layout/list_bahan_layout"/>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginRight="10dp"
-                android:layout_marginLeft="10dp"
-                android:weightSum="1">
-
-                <TextView
-                    android:layout_weight="1"
-                    android:text="Resep"
-                    android:textSize="16sp"
-                    android:textStyle="bold"
-                    android:textColor="@color/green_001"
-                    android:typeface="serif"
-                    android:layout_marginTop="15dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
-
-                <com.google.android.material.floatingactionbutton.FloatingActionButton
-                    android:layout_weight="1"
-                    android:id="@+id/floatingTambahResep"
-                    android:layout_gravity="center_vertical"
-                    android:backgroundTint="@color/green_001"
-                    android:src="@drawable/floating_add"
-                    android:contentDescription="Tambah Menu"
-                    app:fabCustomSize="40dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
-
-
-            </LinearLayout>
-
-            <ListView
-                android:id="@+id/ListTambah_Resep"
-                android:layout_weight="1"
-                android:divider="@color/white"
-                android:typeface="serif"
-                android:layout_marginTop="5dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginLeft="10dp"
-                android:layout_width="match_parent"
-                android:layout_height="250dp"
-                tools:listitem="@layout/list_resep_layout"/>
-
+                tools:listitem="@layout/list_menu_layout" />
         </LinearLayout>
 
 
@@ -244,8 +149,4 @@
 <!--            android:layout_width="match_parent"-->
 <!--            android:layout_height="wrap_content"/>-->
 
-    </LinearLayout>
-
-
-
-</ScrollView>
+</LinearLayout>

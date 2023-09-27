@@ -1,37 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/card_view_bahan"
+    android:id="@+id/card_view_detail_menu"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:backgroundTint="@color/white"
     app:cardElevation="0dp">
 
     <LinearLayout
-        android:id="@+id/LL_bahan"
         android:layout_width="match_parent"
         android:layout_height="44dp"
         android:weightSum="1"
         android:gravity="center_vertical"
         android:layout_marginTop="5dp"
         android:layout_marginBottom="5dp"
-        android:background="@drawable/list_item_selector">
-
-        <ImageView
-            android:src="@drawable/ikon_listbahan"
-            android:layout_marginLeft="8dp"
-            android:layout_width="30dp"
-            android:layout_height="30dp"/>
+        android:background="@drawable/unselected_item">
 
         <TextView
-            android:id="@+id/NamaBahan_List"
+            android:id="@+id/ListDetail_Bahan"
+            android:layout_weight="1"
             android:text="Ayam"
             android:textColor="@color/black"
             android:textSize="15sp"
             android:textStyle="normal"
             android:typeface="serif"
-            android:layout_marginLeft="10dp"
+            android:layout_marginLeft="30dp"
             android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/ListDetail_Status"
+            android:layout_weight="1"
+            android:text="Ada"
+            android:textColor="@color/black"
+            android:textSize="15sp"
+            android:textStyle="normal"
+            android:typeface="serif"
+            android:layout_marginLeft="10dp"
+            android:gravity="center_horizontal"
+            android:layout_width="100dp"
             android:layout_height="wrap_content"/>
 
     </LinearLayout>

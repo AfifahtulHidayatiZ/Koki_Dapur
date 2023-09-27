@@ -16,8 +16,28 @@
             android:id="@+id/toolbarBahan"
             android:background="@color/green_001"
             android:layout_width="match_parent"
-            android:layout_height="55dp"/>
+            android:layout_height="55dp"
+            android:visibility="visible"/>
 
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/alternate_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            app:navigationIcon="@drawable/back"
+            android:visibility="gone"
+            android:background="@color/green_001">
+
+            <TextView
+                android:id="@+id/tv_alternate_action"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:textStyle="normal"
+                android:textSize="18dp"
+                android:typeface="serif"
+                android:text="1 Selected"/>
+        </androidx.appcompat.widget.Toolbar>
     </com.google.android.material.appbar.AppBarLayout>
 
     <TextView

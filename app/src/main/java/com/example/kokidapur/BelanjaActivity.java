@@ -10,12 +10,17 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.kokidapur.adapter.AdapterBelanja;
@@ -66,94 +71,6 @@ public class BelanjaActivity extends AppCompatActivity {
         adapterBelanja = new AdapterBelanja(this, listbelanja);
         listView.setAdapter(adapterBelanja);
 
-//        listView.setChoiceMode(AbsListView.CHOICE_MODE_MULTIPLE_MODAL);
-//        listView.setMultiChoiceModeListener(new AbsListView.MultiChoiceModeListener() {
-//            private List<String> selectedID = new ArrayList<>();
-//            private List<String> selectedNama = new ArrayList<>();
-//            @Override
-//            public void onItemCheckedStateChanged(ActionMode mode, int position, long id, boolean checked) {
-//                int selectedCount = listView.getCheckedItemCount();
-//                if (selectedCount > 1){
-//                    mode.getMenu().findItem(R.id.bb_edit).setEnabled(false);
-//                }else {
-//                    mode.getMenu().findItem(R.id.bb_edit).setEnabled(true);
-//                }
-//
-//                String id_bahan = listbelanja.get(position).getId_bahan();
-//                String nama_bahan = listbelanja.get(position).getNama_bahan();
-//                if (checked){
-//                    selectedID.add(id_bahan);
-//                    selectedNama.add(nama_bahan);
-//                }
-//                else {
-//                    selectedID.remove(id_bahan);
-//                    selectedNama.remove(nama_bahan);
-//                }
-//            }
-//
-//            @Override
-//            public boolean onCreateActionMode(ActionMode mode, Menu menu) {
-//                getMenuInflater().inflate(R.menu.action_menu_bahan, menu);
-//                return false;
-//            }
-//
-//            @Override
-//            public boolean onPrepareActionMode(ActionMode mode, Menu menu) {
-//                return false;
-//            }
-//
-//            @Override
-//            public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
-//                if (item.getItemId()==R.id.bb_edit){
-//                    for (int i=0; i<selectedID.size(); i++){
-//                        String id_bahan = selectedID.get(i);
-//                        String nama_bahan = selectedNama.get(i);
-//
-//                        Intent intent = new Intent(BelanjaActivity.this, TambahDaftarBelanjaActivity.class);
-//                        intent.putExtra("id_bahan", id_bahan);
-//                        intent.putExtra("nama_bahan", nama_bahan);
-//                        intent.putExtra("status","beli");
-//                        startActivity(intent);
-//                    }
-//
-//                }
-//                else if (item.getItemId()==R.id.bb_tbhbelanja) {
-//                    for (int i=0; i<selectedID.size(); i++){
-//                        String id_bahan = selectedID.get(i);
-//                        String nama_bahan = selectedNama.get(i);
-//
-//                        dbhelper.updateBahan(Integer.parseInt(id_bahan), nama_bahan);
-//                    }
-//                    listbelanja.clear();
-//                    getDataBelanja();
-//                    Toast.makeText(BelanjaActivity.this, "Ditambahkan Ke Daftar Bahan", Toast.LENGTH_SHORT).show();
-//
-//                }
-//                else if (item.getItemId()==R.id.bb_delete) {
-//                    for (String id_bahan : selectedID){
-//                        dbhelper.deleteBahan(Integer.parseInt(id_bahan));
-//                    }
-//                    listbelanja.clear();
-//                    getDataBelanja();
-//
-//                }
-//
-//                mode.finish();
-//                return true;
-//            }
-//
-//            @Override
-//            public void onDestroyActionMode(ActionMode mode) {
-//                selectedID.clear();
-//                selectedNama.clear();
-//
-//            }
-//        });
-
-
-
-        //-------------------
-//
         listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
@@ -161,38 +78,52 @@ public class BelanjaActivity extends AppCompatActivity {
                 final String nama_bahan = listbelanja.get(position).getNama_bahan();
                 final String jumlah = listbelanja.get(position).getJumlah();
                 final String status = listbelanja.get(position).getStatus();
-                final CharSequence[] dialogItem = {"Edit", "Hapus","Masukan ke Bahan"};
-                dialog = new AlertDialog.Builder(BelanjaActivity.this);
-                dialog.setItems(dialogItem, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        switch (which){
-                            case 0:
-                                Intent intent = new Intent(BelanjaActivity.this, TambahDaftarBelanjaActivity.class);
-                                intent.putExtra("id_bahan", id_bahan);
-                                intent.putExtra("nama_bahan", nama_bahan);
-                                intent.putExtra("jumlah", jumlah);
-                                intent.putExtra("status","beli");
-                                startActivity(intent);
-                                break;
-                            case 1:
-                                dbhelper.deleteBahan(Integer.parseInt(id_bahan));
-                                listbelanja.clear();
-                                getDataBelanja();
-                                break;
-                            case 2:
-                                dbhelper.updateBahan(Integer.parseInt(id_bahan), nama_bahan);
-                                listbelanja.clear();
-                                getDataBelanja();
-                                Toast.makeText(BelanjaActivity.this, "Ditambahkan Ke Daftar Bahan", Toast.LENGTH_SHORT).show();
-//                                Intent resultintent = new Intent();
-//                                setResult(BelanjaActivity.RESULT_OK, resultintent);
-//                                finish();
-//                                break;
-                        }
 
+                AlertDialog.Builder alertDB = new AlertDialog.Builder(BelanjaActivity.this);
+                View dialogView = getLayoutInflater().inflate(R.layout.custom_dialog_belanja, null);
+                alertDB.setView(dialogView);
+                AlertDialog alertDialog = alertDB.create();
+                TextView dialogtitle = dialogView.findViewById(R.id.Title_dialog_belanja);
+                ImageButton tk_bahan = dialogView.findViewById(R.id.BtnTK_Bahan);
+                Button editbtn = dialogView.findViewById(R.id.BtnEdit_belanja);
+                Button deletebtn = dialogView.findViewById(R.id.BtnHapus_belanja);
+                alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                dialogtitle.setText(nama_bahan);
+
+                tk_bahan.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dbhelper.updateBahan(Integer.parseInt(id_bahan), nama_bahan);
+                        listbelanja.clear();
+                        getDataBelanja();
+                        Toast.makeText(BelanjaActivity.this, "Ditambahkan Ke Daftar Bahan", Toast.LENGTH_SHORT).show();
+                        alertDialog.dismiss();
                     }
-                }).show();
+                });
+
+                editbtn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(BelanjaActivity.this, TambahDaftarBelanjaActivity.class);
+                        intent.putExtra("id_bahan", id_bahan);
+                        intent.putExtra("nama_bahan", nama_bahan);
+                        intent.putExtra("jumlah", jumlah);
+                        intent.putExtra("status","beli");
+                        startActivity(intent);
+                        alertDialog.dismiss();
+                    }
+                });
+
+                deletebtn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dbhelper.deleteBahan(Integer.parseInt(id_bahan));
+                        listbelanja.clear();
+                        getDataBelanja();
+                        alertDialog.dismiss();
+                    }
+                });
+                alertDialog.show();
                 return true;
             }
         });

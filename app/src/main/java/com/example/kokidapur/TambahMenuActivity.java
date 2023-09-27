@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -111,6 +112,17 @@ public class TambahMenuActivity extends AppCompatActivity {
                             Toast.makeText(TambahMenuActivity.this, "Berhasil", Toast.LENGTH_SHORT).show();
                         }
                     }
+                    else {
+                        if (String.valueOf(editnama_menu.getText()).equals("")){
+                            Toast.makeText(TambahMenuActivity.this, "Isi nama menu untuk melakukan update", Toast.LENGTH_SHORT).show();
+                        }
+                        else {
+                            dbhelper.updateMRB(Integer.parseInt(id_menu),editnama_menu.getText().toString());
+                            editnama_menu.setText("");
+                            getDataMenu(newformat);
+                            Toast.makeText(TambahMenuActivity.this, "Berhasil", Toast.LENGTH_SHORT).show();
+                        }
+                    }
                 }catch (Exception e){
                     Log.e("saving", e.getMessage());
                 }
@@ -123,44 +135,56 @@ public class TambahMenuActivity extends AppCompatActivity {
         listViewMenu.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-                final String id_menumrb = dataMRBList.get(position).getId_menu();
-                final String nama_menumrb = dataMRBList.get(position).getNama_menu();
-                final CharSequence[] dialogItem = {"Edit","Hapus"};
-                dialog = new AlertDialog.Builder(TambahMenuActivity.this);
-                dialog.setItems(dialogItem, new DialogInterface.OnClickListener() {
+                final String id_menu = dataMRBList.get(position).getId_menu();
+                final String nama_menu = dataMRBList.get(position).getNama_menu();
+
+                AlertDialog.Builder alertDB = new AlertDialog.Builder(TambahMenuActivity.this);
+                View dialogView = getLayoutInflater().inflate(R.layout.custom_dialog_menu, null);
+                alertDB.setView(dialogView);
+                AlertDialog alertDialog = alertDB.create();
+                TextView dialogTitle = dialogView.findViewById(R.id.Title_dialog);
+                Button editbtn = dialogView.findViewById(R.id.BtnEdit);
+                Button deletbtn = dialogView.findViewById(R.id.BtnHapus);
+                alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                dialogTitle.setText("Anda memilih "+nama_menu);
+
+                editbtn.setOnClickListener(new View.OnClickListener() {
                     @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        switch (which){
-                            case 0:
-                                dbhelper.updateMRB(Integer.parseInt(id_menumrb),editnama_menu.getText().toString());
-                                dataMRBList.clear();
-                                getDataMenu(finalNewformat);
-                                break;
-                            case 1:
-                                dbhelper.deleteMRB(Integer.parseInt(id_menumrb));
-                                dataMRBList.clear();
-                                getDataMenu(finalNewformat);
-                                break;
-                        }
+                    public void onClick(View v) {
+                        editnama_menu.setText(nama_menu);
+                        String updatenamaMenu = editnama_menu.getText().toString();
+//                        dbhelper.updateMRB(Integer.parseInt(id_menu),updatenamaMenu);
+//                        dataMRBList.clear();
+                        getDataMenu(finalNewformat);
+                        alertDialog.dismiss();
                     }
-                }).show();
+                });
+
+                deletbtn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dbhelper.deleteMRB(Integer.parseInt(id_menu));
+                        dataMRBList.clear();
+                        getDataMenu(finalNewformat);
+                        alertDialog.dismiss();
+                    }
+
+                });
+                alertDialog.show();
                 return true;
             }
         });
 
-        fabTambahBahan = findViewById(R.id.floatingTambahBahan);
-        fabTambahBahan.setOnClickListener(new View.OnClickListener() {
+        listViewMenu.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onClick(View v) {
-                showPopupBahan();
-            }
-        });
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                final String id_menumrb = dataMRBList.get(position).getId_menu();
+                final String nama_menumrb = dataMRBList.get(position).getNama_menu();
+                Intent intent = new Intent(TambahMenuActivity.this, DetailMenu.class);
+                intent.putExtra("id_menu", id_menumrb);
+                intent.putExtra("nama_menu", nama_menumrb);
+                startActivity(intent);
 
-        fabTambahResep = findViewById(R.id.floatingTambahResep);
-        fabTambahResep.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showPopupResep();
             }
         });
     }
@@ -190,91 +214,4 @@ public class TambahMenuActivity extends AppCompatActivity {
         getDataMenu(newformat);
     }
 
-    private void showPopupBahan() {
-        final Dialog dialog = new Dialog(this);
-        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        dialog.setContentView(R.layout.bahan_popup);
-
-        //tambahkan untuk menampilkan bahan
-        listViewBahan = dialog.findViewById(R.id.LV_ListBahan_Popup);
-        adapterBahan = new AdapterBahan(this, dataBahanList);
-        dataBahanList.clear();
-        listViewBahan.setAdapter(adapterBahan);
-        getDataBahan();
-
-        Button btntambahanbahan = dialog.findViewById(R.id.Btn_Tambahkan_Bahan);
-        btntambahanbahan.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(TambahMenuActivity.this, "Bahan Ditambahkan", Toast.LENGTH_SHORT).show();
-            }
-        });
-
-        dialog.show();
-        dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-        dialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation;
-        dialog.getWindow().setGravity(Gravity.BOTTOM);
-    }
-
-    private void getDataBahan() {
-        ArrayList<HashMap<String, String>> rows = dbhelper.getAllBahan();
-        for (int i=0; i<rows.size(); i++){
-            String id_bahan = rows.get(i).get("id_bahan");
-            String nama_bahan = rows.get(i).get("nama_bahan");
-            DataBahan dataBahan = new DataBahan();
-            dataBahan.setId_bahan(id_bahan);
-            dataBahan.setNama_bahan(nama_bahan);
-
-            dataBahanList.add(dataBahan);
-        }
-        adapterBahan.notifyDataSetChanged();
-    }
-
-    private void showPopupResep() {
-        final Dialog dialog = new Dialog(this);
-        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        dialog.setContentView(R.layout.resep_popup);
-
-        // tambahkan untuk menampilkan resep
-        listViewResep = dialog.findViewById(R.id.LV_ListResep_Popup);
-        adapterResep = new Adapter(this, dataResepList);
-        dataResepList.clear();
-        listViewResep.setAdapter(adapterResep);
-        getDataResep();
-
-
-        Button btntambahresep = dialog.findViewById(R.id.Btn_Tambahkan_Resep);
-        btntambahresep.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(TambahMenuActivity.this, "Resep Ditambahkan", Toast.LENGTH_SHORT).show();
-            }
-        });
-
-        dialog.show();
-        dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-        dialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation;
-        dialog.getWindow().setGravity(Gravity.BOTTOM);
-    }
-
-    private void getDataResep() {
-        ArrayList<HashMap<String, String>> rows = dbhelper.getAll();
-        for (int i = 0; i<rows.size(); i++){
-            String id = rows.get(i).get("id");
-            String recipe_name = rows.get(i).get("recipe_name");
-            String material_name = rows.get(i).get("material_name");
-            String instruction = rows.get(i).get("instruction");
-
-            Data dataResep = new Data();
-            dataResep.setId(id);
-            dataResep.setRecipe_name(recipe_name);
-            dataResep.setMaterial_name(material_name);
-            dataResep.setInstruction(instruction);
-
-            dataResepList.add(dataResep);
-        }
-        adapterResep.notifyDataSetChanged();
-    }
 }

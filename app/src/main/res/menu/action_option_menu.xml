@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <item
+        android:id="@+id/item_daftar_belanja1"
+        android:icon="@drawable/shopping_cart"
+        android:title="@string/daftar_belanja"
+        app:showAsAction="always"/>
+    <item
+        android:id="@+id/item_edit1"
+        android:icon="@drawable/baseline_edit"
+        android:title="@string/daftar_belanja"
+        app:showAsAction="always"/>
+    <item
+        android:id="@+id/delete1"
+        android:icon="@drawable/delete"
+        android:title="@string/daftar_belanja"
+        app:showAsAction="always"/>
+</menu>

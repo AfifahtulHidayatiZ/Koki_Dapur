@@ -7,11 +7,13 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+import com.example.kokidapur.model.DataBahanMenu;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Helper extends SQLiteOpenHelper {
-    private static int DATABASE_VERSION = 7;
+    private static int DATABASE_VERSION = 8;
     static final String DATABASE_NAME = "koki_dapur";
 
     public Helper(Context context){
@@ -43,6 +45,7 @@ public class Helper extends SQLiteOpenHelper {
         db.execSQL(SQL_CREATE_TABLE_MRB);
 
         final String SQL_CREATE_TABLE_RESEPMRB = "CREATE TABLE resep_mrb ("+
+                "id INTEGER PRIMARY KEY AUTOINCREMENT,"+
                 "id_resep INTEGER," +
                 "id_menu INTEGER, "+
                 "FOREIGN KEY (id_resep) REFERENCES recipes (id)," +
@@ -50,6 +53,7 @@ public class Helper extends SQLiteOpenHelper {
         db.execSQL(SQL_CREATE_TABLE_RESEPMRB);
 
         final String SQL_CREATE_TABLE_BAHANMRB = "CREATE TABLE bahan_menu ("+
+                "id INTEGER PRIMARY KEY AUTOINCREMENT ,"+
                 "id_bahan INTEGER,"+
                 "id_menu INTEGER," +
                 "FOREIGN KEY (id_bahan) REFERENCES bahan (id_bahan)," +
@@ -127,55 +131,47 @@ public class Helper extends SQLiteOpenHelper {
         return  listbelanja;
     }
 
-
-    //Menampilkan data mrb pada menu minggu ini dan hari ini
-//    public ArrayList<HashMap<String, String>> getAllMRB() {
-//        ArrayList<HashMap<String, String>> listMRB = new ArrayList<>();
-//        String QUERY = "SELECT mrb.id_menu, mrb.nama_menu, bahan.nama_bahan, recipes.recipe_name " +
-//                "FROM mrb " +
-//                "INNER JOIN bahan ON mrb.bahan_id = bahan.id_bahan " +
-//                "INNER JOIN recipes ON mrb.resep_id = recipes.id";
-//
-//        SQLiteDatabase database = this.getWritableDatabase();
-//        Cursor cursor = database.rawQuery(QUERY, null);
-//
-//        if (cursor.moveToFirst()) {
-//            do {
-//                HashMap<String, String> map = new HashMap<>();
-//                map.put("id_menu", cursor.getString(0));
-//                map.put("nama_menu", cursor.getString(1));
-//                map.put("nama_bahan", cursor.getString(2));
-//                map.put("recipe_name", cursor.getString(3));
-//                // Memasukkan map ke dalam list
-//                listMRB.add(map);
-//            } while (cursor.moveToNext());
-//        }
-//
-//        cursor.close();
-//        database.close();
-//
-//        return listMRB;
-//    }
-
-    //menampilkan data MRB
-    public ArrayList<HashMap<String, String>> getMenuMRB(){
-        ArrayList<HashMap<String, String>> listMenu = new ArrayList<>();
-        String QUERY = "SELECT * FROM mrb";
+    //menampilkan bahan pada detail menu
+    public ArrayList<HashMap<String,String>> getAllBahanDM(int id_menu){
+        ArrayList<HashMap<String, String>> listbelanja = new ArrayList<>();
+        String QUERY = "SELECT bahan_menu.id AS id, bahan_menu.id_bahan AS id_bahan,bahan.nama_bahan AS nama, bahan.status AS status, bahan.jumlah AS jumlah FROM bahan_menu INNER JOIN bahan ON bahan.id_bahan = bahan_menu.id_bahan WHERE id_menu =" +id_menu;
         SQLiteDatabase database = this.getWritableDatabase();
         Cursor cursor = database.rawQuery(QUERY, null);
         if (cursor.moveToFirst()){
             do {
                 HashMap<String, String> map = new HashMap<>();
-                map.put("id_menu", cursor.getString(0));
-                map.put("nama_menu", cursor.getString(1));
-                map.put("tanggal", cursor.getString(2));
-                listMenu.add(map);
+                map.put("id", cursor.getString(0));
+                map.put("id_bahan", cursor.getString(1));
+                map.put("nama_bahan", cursor.getString(2));
+                map.put("status", cursor.getString(3));
+                map.put("jumlah", cursor.getString(4));
+                listbelanja.add(map);
             }while (cursor.moveToNext());
         }
         cursor.close();
-        return listMenu;
+        return  listbelanja;
     }
 
+    //menampilkan resep pada detail menu
+    public ArrayList<HashMap<String, String>> getAllResepDM(int id_menu){
+        ArrayList<HashMap<String, String>> listresepDM = new ArrayList<>();
+        String QUERY = "SELECT resep_mrb.id AS id, resep_mrb.id_resep AS id_resep, recipes.recipe_name AS nama_resep, recipes.material_name AS nama_bahan, recipes.instruction FROM resep_mrb INNER JOIN recipes ON recipes.id = resep_mrb.id_resep WHERE id_menu =" +id_menu;
+        SQLiteDatabase database = this.getWritableDatabase();
+        Cursor cursor = database.rawQuery(QUERY,null);
+        if (cursor.moveToFirst()){
+            HashMap<String, String> map = new HashMap<>();
+            map.put("id", cursor.getString(0));
+            map.put("id_resep", cursor.getString(1));
+            map.put("recipe_name", cursor.getString(2));
+            map.put("material_name", cursor.getString(3));
+            map.put("instruction", cursor.getString(4));
+            listresepDM.add(map);
+        }while (cursor.moveToNext());
+        cursor.close();
+        return listresepDM;
+    }
+
+    //menampilkan data MRB (MENU)
     public ArrayList<HashMap<String, String>> getTanggalMenu(String tanggal){
         ArrayList<HashMap<String, String>> listTanggalMenu = new ArrayList<>();
         String QUERY = "SELECT * FROM mrb WHERE date(tanggal) = '"+tanggal+"'";
@@ -222,6 +218,40 @@ public class Helper extends SQLiteOpenHelper {
         values.put("jumlah", jumlah);
         values.put("status", "beli");
         String QUERY = "INSERT INTO bahan (nama_bahan, jumlah, status) VALUES ('"+nama_bahan+"','"+jumlah+"','beli')";
+        database.execSQL(QUERY);
+    }
+
+    //insert data resep ke detail menu dari list resep
+    public void insertResepDB (int id_menu, int id_resep){
+        SQLiteDatabase database = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put("id_menu", id_menu);
+        values.put("id_resep", id_resep);
+        String QUERY ="INSERT INTO resep_mrb (id_menu, id_resep) VALUES ("+id_menu+","+id_resep+")";
+        database.execSQL(QUERY);
+    }
+
+
+    //insert data bahan ke detail menu dari list bahan
+    public void insertBahanDM(int id_menu, int id_bahan){
+        SQLiteDatabase database = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put("id_menu", id_menu);
+        values.put("id_bahan", id_bahan);
+        String QUERY = "INSERT INTO bahan_menu (id_menu, id_bahan) VALUES ("+id_menu+","+id_bahan+")";
+        database.execSQL(QUERY);
+
+    }
+
+    //insert data bahan baru ke detail menu
+    public void inserBahanBaruDM(int id_menu, int id_bahan, String nama_bahan){
+        SQLiteDatabase database = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put("id_menu", id_menu);
+        values.put("id_bahan", id_bahan);
+        values.put("nama_bahan", nama_bahan);
+        values.put("status", "beli");
+        String QUERY = "INSERT INTO bahan_menu (id_menu, id_bahan, nama_bahan, status) VALUES ("+id_menu+","+id_bahan+", '"+nama_bahan+"','beli')";
         database.execSQL(QUERY);
     }
 
@@ -293,12 +323,19 @@ public class Helper extends SQLiteOpenHelper {
         String QUERY = "DELETE FROM mrb WHERE id_menu = "+id_menu;
         database.execSQL(QUERY);
     }
-//
-//    //menghapus data mrb
-//    public void dateMRB(int id_menu){
-//        SQLiteDatabase database = this.getWritableDatabase();
-//        String QUERY = "DELETE FROM mrb WHERE id_menu =" +id_menu;
-//        database.execSQL(QUERY);
-//    }
+
+    //menghapus data bahan pada Detail Menu
+    public void deleteBahanDM(int id){
+        SQLiteDatabase database = this.getWritableDatabase();
+        String QUERY = "DELETE FROM bahan_menu WHERE id= "+id;
+        database.execSQL(QUERY);
+    }
+
+    //menghapus data resep pada Detail Menu
+    public void deleteResepDM(int id){
+        SQLiteDatabase database = this.getWritableDatabase();
+        String QUERY = "DELETE FROM resep_mrb WHERE id="+id;
+        database.execSQL(QUERY);
+    }
 
 }

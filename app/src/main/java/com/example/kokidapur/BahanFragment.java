@@ -4,6 +4,8 @@ import android.app.ActionBar;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 
 import androidx.activity.result.ActivityResult;
@@ -12,6 +14,7 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import android.util.Log;
@@ -22,7 +25,11 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.kokidapur.adapter.AdapterBahan;
@@ -117,7 +124,9 @@ public class BahanFragment extends Fragment {
                 startActivity(intent);
             }
         });
+
         listView = root.findViewById(R.id.LV_ListBahan);
+        listView.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
         adapterBahan = new AdapterBahan(getActivity(), listBahan);
         listView.setAdapter(adapterBahan);
 
@@ -128,44 +137,82 @@ public class BahanFragment extends Fragment {
                 final String nama_bahan = listBahan.get(position).getNama_bahan();
                 final String jumlah = listBahan.get(position).getJumlah();
                 final String status = listBahan.get(position).getStatus();
-//
-//                Toolbar toolbar1 = root.findViewById(R.id.toolbarBahan);
-//                toolbar1.inflateMenu(R.menu.action_menu_bahan);
-//
+                AlertDialog.Builder alertDB = new AlertDialog.Builder(getActivity());
+                View dialogView = getLayoutInflater().inflate(R.layout.custom_dialog_bahan,null);
+                alertDB.setView(dialogView);
+                AlertDialog alertDialog = alertDB.create();
+                TextView dialogtitle = dialogView.findViewById(R.id.Title_dialog_bahan);
+                ImageButton tk_belanja = dialogView.findViewById(R.id.BtnTK_Belanja);
+                Button editbtn = dialogView.findViewById(R.id.BtnEdit_bahan);
+                Button deletebtn = dialogView.findViewById(R.id.BtnHapus_bahan);
+                alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                dialogtitle.setText(nama_bahan);
 
-                final CharSequence[] dialogItem = {"Edit", "Hapus","Tambah Keranjang"};
-                dialog = new AlertDialog.Builder(getActivity());
-                dialog.setItems(dialogItem, new DialogInterface.OnClickListener() {
+                tk_belanja.setOnClickListener(new View.OnClickListener() {
                     @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        switch (which){
-                            case 0:
-                                Intent intent = new Intent(getActivity(), TambahBahanActivity.class);
-                                intent.putExtra("id_bahan", id_bahan);
-                                intent.putExtra("nama_bahan", nama_bahan);
-                                intent.putExtra("status","ada");
-                                startActivity(intent);
-                                break;
-                            case 1:
-                                dbhelper.deleteBahan(Integer.parseInt(id_bahan));
-                                listBahan.clear();
-                                getDataBahan();
-                                break;
-                            case 2:
-                                dbhelper.updateBelanja(Integer.parseInt(id_bahan), nama_bahan, jumlah);
-                                listBahan.clear();
-                                getDataBahan();
-                                Toast.makeText(getActivity(), "Ditambahkan Ke Daftar Belanja", Toast.LENGTH_SHORT).show();
-//                                Intent intenbelanja = new Intent(getActivity(), BelanjaActivity.class);
-//                                startActivity(intenbelanja);
-                        }
+                    public void onClick(View v) {
+                        dbhelper.updateBelanja(Integer.parseInt(id_bahan), nama_bahan, jumlah);
+                        listBahan.clear();
+                        getDataBahan();
+                        Toast.makeText(getActivity(), "Ditambahkan Ke Daftar Belanja", Toast.LENGTH_SHORT).show();
+                        alertDialog.dismiss();
                     }
-                }).show();
+                });
+
+                editbtn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(getActivity(), TambahBahanActivity.class);
+                        intent.putExtra("id_bahan", id_bahan);
+                        intent.putExtra("nama_bahan", nama_bahan);
+                        intent.putExtra("status","ada");
+                        startActivity(intent);
+                        alertDialog.dismiss();
+                    }
+                });
+
+                deletebtn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dbhelper.deleteBahan(Integer.parseInt(id_bahan));
+                        listBahan.clear();
+                        getDataBahan();
+                        alertDialog.dismiss();
+                    }
+                });
+                alertDialog.show();
+
+//                final CharSequence[] dialogItem = {"Edit", "Hapus","Tambah Keranjang"};
+//                dialog = new AlertDialog.Builder(getActivity());
+//                dialog.setItems(dialogItem, new DialogInterface.OnClickListener() {
+//                    @Override
+//                    public void onClick(DialogInterface dialog, int which) {
+//                        switch (which){
+//                            case 0:
+//                                Intent intent = new Intent(getActivity(), TambahBahanActivity.class);
+//                                intent.putExtra("id_bahan", id_bahan);
+//                                intent.putExtra("nama_bahan", nama_bahan);
+//                                intent.putExtra("status","ada");
+//                                startActivity(intent);
+//                                break;
+//                            case 1:
+//                                dbhelper.deleteBahan(Integer.parseInt(id_bahan));
+//                                listBahan.clear();
+//                                getDataBahan();
+//                                break;
+//                            case 2:
+//                                dbhelper.updateBelanja(Integer.parseInt(id_bahan), nama_bahan, jumlah);
+//                                listBahan.clear();
+//                                getDataBahan();
+//                                Toast.makeText(getActivity(), "Ditambahkan Ke Daftar Belanja", Toast.LENGTH_SHORT).show();
+//                        }
+//                    }
+//                }).show();
                 return true;
             }
+
         });
         getDataBahan();
-
         return root;
     }
 
@@ -189,5 +236,4 @@ public class BahanFragment extends Fragment {
         listBahan.clear();
         getDataBahan();
     }
-
 }

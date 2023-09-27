@@ -13,6 +13,9 @@
         android:theme="@style/Theme.KokiDapur"
         tools:targetApi="31">
         <activity
+            android:name=".DetailMenu"
+            android:exported="false" />
+        <activity
             android:name=".LihatResepActivity"
             android:exported="false" />
         <activity
