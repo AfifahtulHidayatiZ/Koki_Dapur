@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.kokidapur.helper.Helper;
@@ -46,6 +47,8 @@ public class TambahDaftarBelanjaActivity extends AppCompatActivity {
             setTitle("Tambah Daftar Belanja");
         }else {
             setTitle("Edit Daftar Belanja");
+            TextView textView = findViewById(R.id.TxtNamaBelanja);
+            textView.setText("EDIT DAFTAR BELANJA");
             editnama_belanja.setText(nama_bahan);
             editjumlah_belanja.setText(jumlah);
         }

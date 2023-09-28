@@ -18,7 +18,7 @@
         android:layout_marginTop="8dp">
 
         <ImageView
-            android:src="@drawable/ikon_listmenu"
+            android:src="@drawable/ikon_listmingguini"
             android:layout_marginLeft="8dp"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"/>

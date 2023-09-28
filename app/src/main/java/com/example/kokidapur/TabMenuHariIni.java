@@ -116,7 +116,7 @@ public class TabMenuHariIni extends Fragment {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 final String id_menumrb = dataMRBList.get(position).getId_menu();
                 final String nama_menumrb = dataMRBList.get(position).getNama_menu();
-                Intent intent = new Intent(getActivity(), DetailMenu.class);
+                Intent intent = new Intent(getActivity(), LihatDetailMenu.class);
                 intent.putExtra("id_menu", id_menumrb);
                 intent.putExtra("nama_menu", nama_menumrb);
                 startActivity(intent);

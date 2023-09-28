@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".RiwayatMenuActivity">
+    tools:context=".RiwayatMenuActivity"
+    android:orientation="vertical"
+    android:background="@color/white">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -26,89 +28,54 @@
         </com.google.android.material.appbar.AppBarLayout>
 
 
-        <TextView
-            android:id="@+id/Tanggal_RiwayatMenu"
-            android:text="KAMIS, 01 JUNI 2023"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            android:typeface="serif"
-            android:gravity="center"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            android:textColor="@color/green_001"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-
         <LinearLayout
-            android:weightSum="1"
-            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp">
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:weightSum="1">
+
             <TextView
-                android:text="Menu"
+                android:id="@+id/TglHari_Riwayat"
+                android:text="KAMIS"
                 android:textSize="16sp"
                 android:textStyle="bold"
+                android:typeface="serif"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginEnd="8dp"
                 android:textColor="@color/green_001"
-                android:typeface="serif"
-                android:layout_marginRight="10dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="15dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/ListRiwayat_Menu"
-                android:typeface="serif"
-                android:layout_marginRight="10dp"
-                android:layout_marginLeft="10dp"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
 
             <TextView
-                android:text="Bahan"
+                android:id="@+id/Tgl_Riwayati"
+                android:text="01 JUNI 2023"
                 android:textSize="16sp"
                 android:textStyle="bold"
+                android:typeface="serif"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
                 android:textColor="@color/green_001"
-                android:typeface="serif"
-                android:layout_marginRight="10dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="15dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/ListRiwayat_Bahan"
-                android:typeface="serif"
-                android:layout_marginRight="10dp"
-                android:layout_marginLeft="10dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
-
-            <TextView
-                android:text="Resep"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                android:textColor="@color/green_001"
-                android:typeface="serif"
-                android:layout_marginRight="10dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="15dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/ListRiwayat_Resep"
-                android:typeface="serif"
-                android:layout_marginRight="10dp"
-                android:layout_marginLeft="10dp"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
 
         </LinearLayout>
 
+        <ListView
+            android:id="@+id/ListRiwayat_Menu"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="5dp"
+            android:layout_weight="1"
+            android:divider="@color/white"
+            android:typeface="serif"
+            tools:listitem="@layout/list_menu_layout" />
+
     </LinearLayout>
 
 
-</ScrollView>
+</LinearLayout>

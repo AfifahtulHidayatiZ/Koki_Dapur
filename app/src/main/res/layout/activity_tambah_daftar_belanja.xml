@@ -21,6 +21,7 @@
     </com.google.android.material.appbar.AppBarLayout>
 
     <TextView
+        android:id="@+id/TxtNamaBelanja"
         android:text="TAMBAH DAFTAR BELANJA"
         android:textSize="16dp"
         android:textStyle="bold"

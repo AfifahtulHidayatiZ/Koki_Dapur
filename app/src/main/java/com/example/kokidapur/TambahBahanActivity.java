@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.kokidapur.helper.Helper;
@@ -42,6 +43,8 @@ public class TambahBahanActivity extends AppCompatActivity {
             setTitle("Tambah Bahan");
         }else {
             setTitle("Edit Bahan");
+            TextView namaBahan = findViewById(R.id.txtNamaBahan);
+            namaBahan.setText("EDIT STOK BAHAN");
             editnama_bahan.setText(nama_bahan);
         }
 
@@ -77,7 +80,9 @@ public class TambahBahanActivity extends AppCompatActivity {
         if (String.valueOf(editnama_bahan.getText()).equals("")){
             Toast.makeText(this, "Silahkan Isi Nama Bahan", Toast.LENGTH_SHORT).show();
         }else {
+            TextView namaBahan = findViewById(R.id.txtNamaBahan);
             dbhelper.updateBahan(Integer.parseInt(id_bahan), editnama_bahan.getText().toString());
+            namaBahan.setText("EDIT STOK BAHAN");
             finish();
         }
     }

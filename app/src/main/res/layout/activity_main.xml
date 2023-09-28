@@ -35,7 +35,8 @@
             android:textStyle="bold"
             android:typeface="serif"
             android:layout_gravity="center_horizontal"
-            android:padding="40dp"/>
+            android:paddingTop="40dp"
+            android:paddingBottom="30dp"/>
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/Tab_Layout"

@@ -9,12 +9,18 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="44dp"
+        android:layout_height="54dp"
         android:weightSum="1"
         android:gravity="center_vertical"
         android:layout_marginTop="5dp"
         android:orientation="horizontal"
-        android:background="@drawable/unselected_item_belanja">
+        android:background="@drawable/unselected_item">
+
+        <ImageView
+            android:src="@drawable/ikon_listmenu"
+            android:layout_marginLeft="6dp"
+            android:layout_width="45dp"
+            android:layout_height="45dp"/>
 
         <TextView
             android:id="@+id/NamaMenu_List"
@@ -22,7 +28,7 @@
             android:text="Ayam bakar"
             android:textColor="@color/black"
             android:textSize="15sp"
-            android:textStyle="normal"
+            android:textStyle="bold"
             android:typeface="serif"
             android:padding="5dp"
             android:gravity="center_vertical"

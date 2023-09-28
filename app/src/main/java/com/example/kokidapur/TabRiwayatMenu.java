@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.Toast;
 
 import com.example.kokidapur.adapter.AdapterMRB;
 import com.example.kokidapur.helper.Helper;
@@ -34,8 +35,6 @@ public class TabRiwayatMenu extends Fragment {
     List<DataMRB> dataMRBList = new ArrayList<>();
     AdapterMRB adapterMRB;
     Helper dbhelper = new Helper(getActivity());
-    private String newformat;
-
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -91,9 +90,20 @@ public class TabRiwayatMenu extends Fragment {
             public void onDateChanged(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
                 String selectedDate = String.format(Locale.getDefault(), "%04d-%02d-%02d", year, monthOfYear+1, dayOfMonth);
                 getDataMenu(selectedDate);
-                Intent intent = new Intent(getActivity(), DetailMenu.class);
-                intent.putExtra("selectedDate", selectedDate);
-//                startActivity(intent);
+                
+//                String id_menu = getDataMenu(selectedDate);
+//                String nama_menu = getDataMenu(selectedDate);
+
+//                if (id_menu !=null && nama_menu !=null){
+                    Intent intent = new Intent(getActivity(), DetailMenu.class);
+                    intent.putExtra("selectedDate", selectedDate);
+//                    intent.putExtra("id_menu", id_menu);
+//                    intent.putExtra("nama_menu", nama_menu);
+                    startActivity(intent);
+//                }
+//                else {
+//                    Toast.makeText(getActivity(), "Tidak ada menu pada tanggal "+selectedDate, Toast.LENGTH_SHORT).show();
+//                }
             }
         });
 
@@ -116,9 +126,11 @@ public class TabRiwayatMenu extends Fragment {
         adapterMRB.notifyDataSetChanged();
     }
 
+
     @Override
     public void onResume() {
         super.onResume();
         dataMRBList.clear();
+//        getDataMenu();
     }
 }

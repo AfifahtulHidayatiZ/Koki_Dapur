@@ -181,33 +181,6 @@ public class BahanFragment extends Fragment {
                     }
                 });
                 alertDialog.show();
-
-//                final CharSequence[] dialogItem = {"Edit", "Hapus","Tambah Keranjang"};
-//                dialog = new AlertDialog.Builder(getActivity());
-//                dialog.setItems(dialogItem, new DialogInterface.OnClickListener() {
-//                    @Override
-//                    public void onClick(DialogInterface dialog, int which) {
-//                        switch (which){
-//                            case 0:
-//                                Intent intent = new Intent(getActivity(), TambahBahanActivity.class);
-//                                intent.putExtra("id_bahan", id_bahan);
-//                                intent.putExtra("nama_bahan", nama_bahan);
-//                                intent.putExtra("status","ada");
-//                                startActivity(intent);
-//                                break;
-//                            case 1:
-//                                dbhelper.deleteBahan(Integer.parseInt(id_bahan));
-//                                listBahan.clear();
-//                                getDataBahan();
-//                                break;
-//                            case 2:
-//                                dbhelper.updateBelanja(Integer.parseInt(id_bahan), nama_bahan, jumlah);
-//                                listBahan.clear();
-//                                getDataBahan();
-//                                Toast.makeText(getActivity(), "Ditambahkan Ke Daftar Belanja", Toast.LENGTH_SHORT).show();
-//                        }
-//                    }
-//                }).show();
                 return true;
             }
 
