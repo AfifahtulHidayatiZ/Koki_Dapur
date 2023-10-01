@@ -59,11 +59,11 @@ public class LihatDetailMenu extends AppCompatActivity {
 
         dbhelper = new Helper(getApplicationContext());
 
-        lvBahan = findViewById(R.id.ListBahanBeli);
+        lvBahan = findViewById(R.id.ListLihatBahan);
         adapterMenuBahan = new AdapterMenuBahan(this, dataBahanDMList);
         lvBahan.setAdapter(adapterMenuBahan);
 
-        lvResep =findViewById(R.id.ListTambah_Resep);
+        lvResep =findViewById(R.id.ListLihatResep);
         adapterMenuResep =new AdapterMenuResep(this, dataResepDMList);
         lvResep.setAdapter(adapterMenuResep);
 

@@ -92,8 +92,27 @@ public class Helper extends SQLiteOpenHelper {
         return list;
     }
 
-    //menampilkan data bahan
+    //menampilkan bahan pada popup Bahan (DM)
     public ArrayList<HashMap<String, String>> getAllBahan(){
+        ArrayList<HashMap<String, String>> listbahan = new ArrayList<>();
+        String QUERY = "SELECT * FROM bahan";
+        SQLiteDatabase database = this.getWritableDatabase();
+        Cursor cursor = database.rawQuery(QUERY, null);
+        if (cursor.moveToFirst()){
+            do {
+                HashMap<String, String> map1 = new HashMap<>();
+                map1.put("id_bahan", cursor.getString(0));
+                map1.put("nama_bahan", cursor.getString(1));
+                map1.put("status", cursor.getString(3));
+                listbahan.add(map1);
+            }while (cursor.moveToNext());
+        }
+        cursor.close();
+        return listbahan;
+    }
+
+    //menampilkan data bahan
+    public ArrayList<HashMap<String, String>> getAllBahanAda(){
         ArrayList<HashMap<String, String>> listbahan = new ArrayList<>();
         String QUERY = "SELECT * FROM bahan WHERE status = 'ada'";
         SQLiteDatabase database = this.getWritableDatabase();
@@ -244,14 +263,12 @@ public class Helper extends SQLiteOpenHelper {
     }
 
     //insert data bahan baru ke detail menu
-    public void inserBahanBaruDM(int id_menu, int id_bahan, String nama_bahan){
+    public void inserBahanBaruDM(String nama_bahan){
         SQLiteDatabase database = this.getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put("id_menu", id_menu);
-        values.put("id_bahan", id_bahan);
         values.put("nama_bahan", nama_bahan);
         values.put("status", "beli");
-        String QUERY = "INSERT INTO bahan_menu (id_menu, id_bahan, nama_bahan, status) VALUES ("+id_menu+","+id_bahan+", '"+nama_bahan+"','beli')";
+        String QUERY = "INSERT INTO bahan (nama_bahan, status) VALUES ('"+nama_bahan+"','beli')";
         database.execSQL(QUERY);
     }
 

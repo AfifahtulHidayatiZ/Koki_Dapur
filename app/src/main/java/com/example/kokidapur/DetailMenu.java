@@ -91,6 +91,7 @@ public class DetailMenu extends AppCompatActivity {
         lvBahan = findViewById(R.id.ListBahanBeli);
         adapterMenuBahan = new AdapterMenuBahan(this, dataBahanDMList);
         lvBahan.setAdapter(adapterMenuBahan);
+        getdataBahanDM();
 
         fabTambahBahanMenu.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -101,10 +102,30 @@ public class DetailMenu extends AppCompatActivity {
                             Toast.makeText(DetailMenu.this, "Nama bahan belum diisi", Toast.LENGTH_SHORT).show();
                         }
                         else {
-                            dbhelper.inserBahanBaruDM(Integer.parseInt(id_menu),Integer.parseInt(id_bahan),edit_detailbahan.getText().toString());
+                            dbhelper.inserBahanBaruDM(edit_detailbahan.getText().toString());
                             edit_detailbahan.setText("");
+                            dataBahanDMList.clear();
                             getdataBahanDM();
-                            Toast.makeText(DetailMenu.this, "Berhasil", Toast.LENGTH_SHORT).show();
+
+//                            AlertDialog.Builder builder = new AlertDialog.Builder(DetailMenu.this);
+//                            View dialogView = getLayoutInflater().inflate(R.layout.custom_dialog_inputbaru, null);
+//                            builder.setView(dialogView);
+//                            AlertDialog alertDialog = builder.create();
+//                            TextView dialogtitle = dialogView.findViewById(R.id.Title_dialog_ib);
+//                            Button btnOk = dialogView.findViewById(R.id.BtnOk_ib);
+//                            alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+//                            dialogtitle.setText("Bahan ditambahkan kedaftar belanja");
+//                            builder.setMessage("Tambahkan kedaftar bahan "+nama_menu+"jika membutuhkannya");
+//
+//                            btnOk.setOnClickListener(new View.OnClickListener() {
+//                                @Override
+//                                public void onClick(View v) {
+//
+//                                    alertDialog.dismiss();
+//                                }
+//                            });
+//                            alertDialog.show();
+                            Toast.makeText(DetailMenu.this, "Tambahkan kedaftar bahan "+nama_menu+" jika membutuhkannya", Toast.LENGTH_SHORT).show();
                         }
                     }
                 }catch (Exception e){
@@ -241,7 +262,6 @@ public class DetailMenu extends AppCompatActivity {
                 showPopupResep();
             }
         });
-        getdataBahanDM();
         getdataResepDM();
     }
 
@@ -288,9 +308,11 @@ public class DetailMenu extends AppCompatActivity {
         for (int i=0; i<rows.size(); i++){
             String id_bahan = rows.get(i).get("id_bahan");
             String nama_bahan = rows.get(i).get("nama_bahan");
+            String status = rows.get(i).get("status");
             DataBahan dataBahan = new DataBahan();
             dataBahan.setId_bahan(id_bahan);
             dataBahan.setNama_bahan(nama_bahan);
+            dataBahan.setStatus(status);
 
             dataBahanList.add(dataBahan);
         }

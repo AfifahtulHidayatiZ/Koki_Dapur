@@ -117,6 +117,18 @@
                     android:src="@drawable/floating_add"
                     app:fabCustomSize="40dp" />
 
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/floatingEditMenu"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:backgroundTint="@color/green_001"
+                    android:contentDescription="Tambah Menu"
+                    android:src="@drawable/baseline_check_24"
+                    android:visibility="gone"
+                    app:fabCustomSize="40dp"/>
+
 
             </LinearLayout>
 

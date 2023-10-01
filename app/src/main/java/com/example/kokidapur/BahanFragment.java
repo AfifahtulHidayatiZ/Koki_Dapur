@@ -190,7 +190,7 @@ public class BahanFragment extends Fragment {
     }
 
     public void getDataBahan(){
-        ArrayList<HashMap<String, String>> rows = dbhelper.getAllBahan();
+        ArrayList<HashMap<String, String>> rows = dbhelper.getAllBahanAda();
         for (int i=0; i<rows.size(); i++){
             String id_bahan = rows.get(i).get("id_bahan");
             String nama_bahan = rows.get(i).get("nama_bahan");

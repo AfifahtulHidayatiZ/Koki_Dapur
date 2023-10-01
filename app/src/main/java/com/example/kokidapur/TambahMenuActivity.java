@@ -51,6 +51,8 @@ public class TambahMenuActivity extends AppCompatActivity {
     AdapterMRB adapterMRB;
     Helper dbhelper = new Helper(this);
     ListView listViewMenu, listViewBahan, listViewResep;
+    DataMRB dataMRB;
+    private boolean isEdit = false;
     private EditText editnama_menu;
     private String id_menu, nama_menu, newformat;
 
@@ -152,10 +154,12 @@ public class TambahMenuActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         editnama_menu.setText(nama_menu);
-                        String updatenamaMenu = editnama_menu.getText().toString();
+//                        String updatenamaMenu = editnama_menu.getText().toString();
 //                        dbhelper.updateMRB(Integer.parseInt(id_menu),updatenamaMenu);
 //                        dataMRBList.clear();
-                        getDataMenu(finalNewformat);
+                        dataMRB = dataMRBList.get(position);
+                        isEdit = true;
+                        updateUI();
                         alertDialog.dismiss();
                     }
                 });
@@ -187,6 +191,33 @@ public class TambahMenuActivity extends AppCompatActivity {
 
             }
         });
+
+        FloatingActionButton fabEdit = (FloatingActionButton) findViewById(R.id.floatingEditMenu);
+        fabEdit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String updatenamaMenu = editnama_menu.getText().toString();
+                dbhelper.updateMRB(Integer.parseInt(dataMRB.getId_menu()),updatenamaMenu);
+                editnama_menu.setText("");
+                editnama_menu.clearFocus();
+                isEdit = false;
+                updateUI();
+                dataMRBList.clear();
+                getDataMenu(finalNewformat);
+            }
+        });
+    }
+
+    private void updateUI() {
+        FloatingActionButton fabTambah = (FloatingActionButton) findViewById(R.id.floatingTambahMenu);
+        FloatingActionButton fabEdit = (FloatingActionButton) findViewById(R.id.floatingEditMenu);
+        if (isEdit){
+            fabTambah.setVisibility(View.GONE);
+            fabEdit.setVisibility(View.VISIBLE);
+        } else {
+            fabTambah.setVisibility(View.VISIBLE);
+            fabEdit.setVisibility(View.GONE);
+        }
     }
 
     private void getDataMenu(String tanggal) {

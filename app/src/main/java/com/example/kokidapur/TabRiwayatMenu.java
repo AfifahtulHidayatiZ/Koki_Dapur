@@ -1,10 +1,12 @@
 package com.example.kokidapur;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -43,6 +45,8 @@ public class TabRiwayatMenu extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    private String selectedDate;
 
     public TabRiwayatMenu() {
         // Required empty public constructor
@@ -84,26 +88,44 @@ public class TabRiwayatMenu extends Fragment {
 
         datePicker = root.findViewById(R.id.Tanggal_Riwayat);
         adapterMRB = new AdapterMRB(getActivity(),dataMRBList);
+        Calendar calendar = Calendar.getInstance();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
 
-        datePicker.setOnDateChangedListener(new DatePicker.OnDateChangedListener() {
-            @Override
-            public void onDateChanged(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-                String selectedDate = String.format(Locale.getDefault(), "%04d-%02d-%02d", year, monthOfYear+1, dayOfMonth);
-                getDataMenu(selectedDate);
-                
+        selectedDate = sdf.format(calendar.getTime());
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
+            datePicker.setOnDateChangedListener(new DatePicker.OnDateChangedListener() {
+                @Override
+                public void onDateChanged(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+                    selectedDate = String.format(Locale.getDefault(), "%04d-%02d-%02d", year, monthOfYear+1, dayOfMonth);
+//                    getDataMenu(selectedDate);
+                    Log.i("Tanggal", selectedDate);
+
 //                String id_menu = getDataMenu(selectedDate);
 //                String nama_menu = getDataMenu(selectedDate);
 
 //                if (id_menu !=null && nama_menu !=null){
-                    Intent intent = new Intent(getActivity(), DetailMenu.class);
-                    intent.putExtra("selectedDate", selectedDate);
+//                    Intent intent = new Intent(getActivity(), DetailMenu.class);
+//                    intent.putExtra("selectedDate", selectedDate);
+//
 //                    intent.putExtra("id_menu", id_menu);
 //                    intent.putExtra("nama_menu", nama_menu);
-                    startActivity(intent);
+//                    startActivity(intent);
 //                }
 //                else {
 //                    Toast.makeText(getActivity(), "Tidak ada menu pada tanggal "+selectedDate, Toast.LENGTH_SHORT).show();
 //                }
+                }
+            });
+        }
+
+        Button btnriwayat = (Button) root.findViewById(R.id.Btn_RiwayatMenu);
+        btnriwayat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), RiwayatMenuActivity.class);
+                intent.putExtra("selectedDate", selectedDate);
+                startActivity(intent);
             }
         });
 
