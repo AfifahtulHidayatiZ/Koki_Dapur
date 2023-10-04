@@ -263,7 +263,7 @@ public class Helper extends SQLiteOpenHelper {
     }
 
     //insert data bahan baru ke detail menu
-    public void inserBahanBaruDM(String nama_bahan){
+    public void insertBahanBaruDM(String nama_bahan){
         SQLiteDatabase database = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put("nama_bahan", nama_bahan);

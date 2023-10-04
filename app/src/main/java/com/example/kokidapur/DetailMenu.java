@@ -24,6 +24,7 @@ import android.widget.Toast;
 
 import com.example.kokidapur.adapter.Adapter;
 import com.example.kokidapur.adapter.AdapterBahan;
+import com.example.kokidapur.adapter.AdapterBahanPopup;
 import com.example.kokidapur.adapter.AdapterMenuBahan;
 import com.example.kokidapur.adapter.AdapterMenuResep;
 import com.example.kokidapur.helper.Helper;
@@ -43,7 +44,8 @@ public class DetailMenu extends AppCompatActivity {
     List<DataBahanMenu> dataBahanDMList = new ArrayList<>();
     List<DataResepMenu> dataResepDMList = new ArrayList<>();
     List<Data> dataResepList = new ArrayList<>();
-    AdapterBahan adapterBahan;
+//    AdapterBahan adapterBahan;
+    AdapterBahanPopup adapterBahanPopup;
     Adapter adapterResep;
     AdapterMenuBahan adapterMenuBahan;
     AdapterMenuResep adapterMenuResep;
@@ -81,58 +83,59 @@ public class DetailMenu extends AppCompatActivity {
 
         dbhelper = new Helper(getApplicationContext());
 
-        edit_detailbahan = findViewById(R.id.InputBahanMenu);
-        fabTambahBahanMenu = findViewById(R.id.floatingTambahBahanMenu);
+//        edit_detailbahan = findViewById(R.id.InputBahanMenu);
+//        fabTambahBahanMenu = findViewById(R.id.floatingTambahBahanMenu);
 
         lvResep = findViewById(R.id.ListTambah_Resep);
         adapterMenuResep = new AdapterMenuResep(this, dataResepDMList);
         lvResep.setAdapter(adapterMenuResep);
+        getdataResepDM();
 
         lvBahan = findViewById(R.id.ListBahanBeli);
         adapterMenuBahan = new AdapterMenuBahan(this, dataBahanDMList);
         lvBahan.setAdapter(adapterMenuBahan);
         getdataBahanDM();
 
-        fabTambahBahanMenu.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                try {
-                    if (id_bahan == null || id_bahan.equals("")){
-                        if (String.valueOf(edit_detailbahan.getText()).equals("")){
-                            Toast.makeText(DetailMenu.this, "Nama bahan belum diisi", Toast.LENGTH_SHORT).show();
-                        }
-                        else {
-                            dbhelper.inserBahanBaruDM(edit_detailbahan.getText().toString());
-                            edit_detailbahan.setText("");
-                            dataBahanDMList.clear();
-                            getdataBahanDM();
-
-//                            AlertDialog.Builder builder = new AlertDialog.Builder(DetailMenu.this);
-//                            View dialogView = getLayoutInflater().inflate(R.layout.custom_dialog_inputbaru, null);
-//                            builder.setView(dialogView);
-//                            AlertDialog alertDialog = builder.create();
-//                            TextView dialogtitle = dialogView.findViewById(R.id.Title_dialog_ib);
-//                            Button btnOk = dialogView.findViewById(R.id.BtnOk_ib);
-//                            alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-//                            dialogtitle.setText("Bahan ditambahkan kedaftar belanja");
-//                            builder.setMessage("Tambahkan kedaftar bahan "+nama_menu+"jika membutuhkannya");
+//        fabTambahBahanMenu.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                try {
+//                    if (id_bahan == null || id_bahan.equals("")){
+//                        if (String.valueOf(edit_detailbahan.getText()).equals("")){
+//                            Toast.makeText(DetailMenu.this, "Nama bahan belum diisi", Toast.LENGTH_SHORT).show();
+//                        }
+//                        else {
+//                            dbhelper.inserBahanBaruDM(edit_detailbahan.getText().toString());
+//                            edit_detailbahan.setText("");
+//                            dataBahanDMList.clear();
+//                            getdataBahanDM();
 //
-//                            btnOk.setOnClickListener(new View.OnClickListener() {
-//                                @Override
-//                                public void onClick(View v) {
-//
-//                                    alertDialog.dismiss();
-//                                }
-//                            });
-//                            alertDialog.show();
-                            Toast.makeText(DetailMenu.this, "Tambahkan kedaftar bahan "+nama_menu+" jika membutuhkannya", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                }catch (Exception e){
-                    Log.e("saving", e.getMessage());
-                }
-            }
-        });
+////                            AlertDialog.Builder builder = new AlertDialog.Builder(DetailMenu.this);
+////                            View dialogView = getLayoutInflater().inflate(R.layout.custom_dialog_inputbaru, null);
+////                            builder.setView(dialogView);
+////                            AlertDialog alertDialog = builder.create();
+////                            TextView dialogtitle = dialogView.findViewById(R.id.Title_dialog_ib);
+////                            Button btnOk = dialogView.findViewById(R.id.BtnOk_ib);
+////                            alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+////                            dialogtitle.setText("Bahan ditambahkan kedaftar belanja");
+////                            builder.setMessage("Tambahkan kedaftar bahan "+nama_menu+"jika membutuhkannya");
+////
+////                            btnOk.setOnClickListener(new View.OnClickListener() {
+////                                @Override
+////                                public void onClick(View v) {
+////
+////                                    alertDialog.dismiss();
+////                                }
+////                            });
+////                            alertDialog.show();
+//                            Toast.makeText(DetailMenu.this, "Tambahkan kedaftar bahan "+nama_menu+" jika membutuhkannya", Toast.LENGTH_SHORT).show();
+//                        }
+//                    }
+//                }catch (Exception e){
+//                    Log.e("saving", e.getMessage());
+//                }
+//            }
+//        });
 
         lvBahan.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
@@ -262,7 +265,6 @@ public class DetailMenu extends AppCompatActivity {
                 showPopupResep();
             }
         });
-        getdataResepDM();
     }
 
     private void showPopupBahan() {
@@ -272,9 +274,9 @@ public class DetailMenu extends AppCompatActivity {
 
         //tambahkan untuk menampilkan bahan
         lvPopUpBahan = dialog.findViewById(R.id.LV_ListBahan_Popup);
-        adapterBahan = new AdapterBahan(this, dataBahanList);
+        adapterBahanPopup = new AdapterBahanPopup(this, dataBahanList);
         dataBahanList.clear();
-        lvPopUpBahan.setAdapter(adapterBahan);
+        lvPopUpBahan.setAdapter(adapterBahanPopup);
         getDataBahan();
 
         lvPopUpBahan.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -287,14 +289,30 @@ public class DetailMenu extends AppCompatActivity {
             }
         });
 
-//        Button btntambahanbahan = dialog.findViewById(R.id.Btn_Tambahkan_Bahan);
-//        btntambahanbahan.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//
-//                Toast.makeText(DetailMenu.this, "Bahan Ditambahkan", Toast.LENGTH_SHORT).show();
-//            }
-//        });
+        edit_detailbahan = dialog.findViewById(R.id.InputBahanMenu);
+        fabTambahBahanMenu = dialog.findViewById(R.id.floatingTambahBahanMenu);
+
+        fabTambahBahanMenu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                    String namaBahanBaru = edit_detailbahan.getText().toString().trim();
+                    if (namaBahanBaru.isEmpty()){
+                        Toast.makeText(DetailMenu.this, "Silahkan isi nama menu", Toast.LENGTH_SHORT).show();
+                    }
+                    else {
+                        dbhelper.insertBahanBaruDM(namaBahanBaru);
+                        edit_detailbahan.setText("");
+                        dataBahanDMList.clear();
+                        getDataBahan();
+                        Toast.makeText(DetailMenu.this, "Bahan ditambahkan kedaftar belanja", Toast.LENGTH_SHORT).show();
+                    }
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        });
+
 
         dialog.show();
         dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
@@ -316,7 +334,7 @@ public class DetailMenu extends AppCompatActivity {
 
             dataBahanList.add(dataBahan);
         }
-        adapterBahan.notifyDataSetChanged();
+        adapterBahanPopup.notifyDataSetChanged();
     }
 
     private void getdataBahanDM() {
@@ -364,15 +382,6 @@ public class DetailMenu extends AppCompatActivity {
                 dialog.dismiss();
             }
         });
-
-
-//        Button btntambahresep = dialog.findViewById(R.id.Btn_Tambahkan_Resep);
-//        btntambahresep.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Toast.makeText(DetailMenu.this, "Resep Ditambahkan", Toast.LENGTH_SHORT).show();
-//            }
-//        });
 
         dialog.show();
         dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);

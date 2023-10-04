@@ -68,47 +68,28 @@
 
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="10dp"
-        android:gravity="center_horizontal"
-        android:orientation="horizontal"
-        android:weightSum="1">
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/LayoutBahanMenu"
-            android:layout_marginRight="5dp"
-            android:layout_width="240dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/InputBahanMenu"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Tambah Bahan Baru"
-                android:inputType="textCapSentences"
-                android:textColor="@color/black"
-                android:textSize="15sp"
-                android:typeface="serif" />
-
-
-        </com.google.android.material.textfield.TextInputLayout>
+<!--    <LinearLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginLeft="10dp"-->
+<!--        android:layout_marginTop="10dp"-->
+<!--        android:layout_marginRight="10dp"-->
+<!--        android:gravity="center_horizontal"-->
+<!--        android:orientation="horizontal"-->
+<!--        android:weightSum="1">-->
 
 <!--        <com.google.android.material.textfield.TextInputLayout-->
-<!--            android:id="@+id/LayoutJumlahBahan"-->
-<!--            android:layout_width="90dp"-->
+<!--            android:id="@+id/LayoutBahanMenu"-->
+<!--            android:layout_marginRight="5dp"-->
+<!--            android:layout_width="240dp"-->
 <!--            android:layout_height="wrap_content"-->
 <!--            android:layout_weight="1">-->
 
 <!--            <com.google.android.material.textfield.TextInputEditText-->
-<!--                android:id="@+id/InputJumlahBahan"-->
+<!--                android:id="@+id/InputBahanMenu"-->
 <!--                android:layout_width="match_parent"-->
 <!--                android:layout_height="wrap_content"-->
-<!--                android:hint="Jumlah"-->
+<!--                android:hint="Tambah Bahan Baru"-->
 <!--                android:inputType="textCapSentences"-->
 <!--                android:textColor="@color/black"-->
 <!--                android:textSize="15sp"-->
@@ -117,19 +98,38 @@
 
 <!--        </com.google.android.material.textfield.TextInputLayout>-->
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/floatingTambahBahanMenu"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_weight="1"
-            android:backgroundTint="@color/green_001"
-            android:contentDescription="Tambah bahan baru"
-            android:src="@drawable/floating_add"
-            app:fabCustomSize="40dp" />
+<!--&lt;!&ndash;        <com.google.android.material.textfield.TextInputLayout&ndash;&gt;-->
+<!--&lt;!&ndash;            android:id="@+id/LayoutJumlahBahan"&ndash;&gt;-->
+<!--&lt;!&ndash;            android:layout_width="90dp"&ndash;&gt;-->
+<!--&lt;!&ndash;            android:layout_height="wrap_content"&ndash;&gt;-->
+<!--&lt;!&ndash;            android:layout_weight="1">&ndash;&gt;-->
+
+<!--&lt;!&ndash;            <com.google.android.material.textfield.TextInputEditText&ndash;&gt;-->
+<!--&lt;!&ndash;                android:id="@+id/InputJumlahBahan"&ndash;&gt;-->
+<!--&lt;!&ndash;                android:layout_width="match_parent"&ndash;&gt;-->
+<!--&lt;!&ndash;                android:layout_height="wrap_content"&ndash;&gt;-->
+<!--&lt;!&ndash;                android:hint="Jumlah"&ndash;&gt;-->
+<!--&lt;!&ndash;                android:inputType="textCapSentences"&ndash;&gt;-->
+<!--&lt;!&ndash;                android:textColor="@color/black"&ndash;&gt;-->
+<!--&lt;!&ndash;                android:textSize="15sp"&ndash;&gt;-->
+<!--&lt;!&ndash;                android:typeface="serif" />&ndash;&gt;-->
 
 
-    </LinearLayout>
+<!--&lt;!&ndash;        </com.google.android.material.textfield.TextInputLayout>&ndash;&gt;-->
+
+<!--        <com.google.android.material.floatingactionbutton.FloatingActionButton-->
+<!--            android:id="@+id/floatingTambahBahanMenu"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_gravity="center_vertical"-->
+<!--            android:layout_weight="1"-->
+<!--            android:backgroundTint="@color/green_001"-->
+<!--            android:contentDescription="Tambah bahan baru"-->
+<!--            android:src="@drawable/floating_add"-->
+<!--            app:fabCustomSize="40dp" />-->
+
+
+<!--    </LinearLayout>-->
 
     <ListView
         android:id="@+id/ListBahanBeli"

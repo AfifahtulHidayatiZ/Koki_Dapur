@@ -43,6 +43,7 @@ public class TabMenuHariIni extends Fragment {
     Helper dbhelper = new Helper(getActivity());
     ListView listViewMenu;
     private String newformat;
+    private TextView emptyText;
 
 
     // TODO: Rename parameter arguments, choose names that match
@@ -91,6 +92,7 @@ public class TabMenuHariIni extends Fragment {
         // Inflate the layout for this fragment
         View root = inflater.inflate(R.layout.fragment_tab_menu_hari_ini, container, false);
 
+        emptyText = root.findViewById(R.id.EmptyText);
         dbhelper = new Helper(getActivity().getApplicationContext());
         DayView = root.findViewById(R.id.TglHari_Home_Harini);
         DateView = root.findViewById(R.id.Tgl_Home_Harini);
@@ -140,6 +142,15 @@ public class TabMenuHariIni extends Fragment {
             dataMRBList.add(dataMRB);
         }
         adapterMRB.notifyDataSetChanged();
+
+        if (dataMRBList.isEmpty()){
+            listViewMenu.setVisibility(View.GONE);
+            emptyText.setVisibility(View.VISIBLE);
+        }
+        else {
+            listViewMenu.setVisibility(View.VISIBLE);
+            emptyText.setVisibility(View.GONE);
+        }
     }
 
 
