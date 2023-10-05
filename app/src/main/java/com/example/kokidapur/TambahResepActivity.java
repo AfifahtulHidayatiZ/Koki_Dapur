@@ -58,8 +58,10 @@ public class TambahResepActivity extends AppCompatActivity {
                 try {
                     if (id == null || id.equals("")){
                         save();
+                        Toast.makeText(TambahResepActivity.this, "Berhasil menyimpan resep", Toast.LENGTH_SHORT).show();
                     }else {
                         edit();
+                        Toast.makeText(TambahResepActivity.this, "Edit resep berhasil", Toast.LENGTH_SHORT).show();
                     }
                 }catch (Exception e){
                     Log.e("Saving", e.getMessage());

@@ -286,6 +286,7 @@ public class DetailMenu extends AppCompatActivity {
                 dataBahanDMList.clear();
                 getdataBahanDM();
                 dialog.dismiss();
+                Toast.makeText(DetailMenu.this, "Bahan ditambahkan untuk menu "+nama_menu, Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -305,7 +306,7 @@ public class DetailMenu extends AppCompatActivity {
                         edit_detailbahan.setText("");
                         dataBahanDMList.clear();
                         getDataBahan();
-                        Toast.makeText(DetailMenu.this, "Bahan ditambahkan kedaftar belanja", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(DetailMenu.this, "Input bahan berhasil", Toast.LENGTH_SHORT).show();
                     }
                 } catch (Exception e) {
                     throw new RuntimeException(e);
@@ -380,6 +381,7 @@ public class DetailMenu extends AppCompatActivity {
                 dataResepDMList.clear();
                 getdataResepDM();
                 dialog.dismiss();
+                Toast.makeText(DetailMenu.this, "Resep ditambahakan", Toast.LENGTH_SHORT).show();
             }
         });
 

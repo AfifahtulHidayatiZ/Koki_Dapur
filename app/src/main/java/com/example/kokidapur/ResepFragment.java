@@ -170,6 +170,7 @@ public class ResepFragment extends Fragment {
                         lists.clear();
                         getData();
                         alertDialog.dismiss();
+                        Toast.makeText(getActivity(), "Resep "+recipe_name+" dihapus", Toast.LENGTH_SHORT).show();
                     }
                 });
                 alertDialog.show();

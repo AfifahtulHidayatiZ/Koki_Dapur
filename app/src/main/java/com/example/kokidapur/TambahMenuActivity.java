@@ -111,7 +111,7 @@ public class TambahMenuActivity extends AppCompatActivity {
                             dbhelper.insertMRB(editnama_menu.getText().toString(), newformat);
                             editnama_menu.setText("");
                             getDataMenu(newformat);
-                            Toast.makeText(TambahMenuActivity.this, "Berhasil", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(TambahMenuActivity.this, "Berhasil menambahkan menu", Toast.LENGTH_SHORT).show();
                         }
                     }
                     else {
@@ -154,9 +154,6 @@ public class TambahMenuActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         editnama_menu.setText(nama_menu);
-//                        String updatenamaMenu = editnama_menu.getText().toString();
-//                        dbhelper.updateMRB(Integer.parseInt(id_menu),updatenamaMenu);
-//                        dataMRBList.clear();
                         dataMRB = dataMRBList.get(position);
                         isEdit = true;
                         updateUI();
@@ -171,6 +168,7 @@ public class TambahMenuActivity extends AppCompatActivity {
                         dataMRBList.clear();
                         getDataMenu(finalNewformat);
                         alertDialog.dismiss();
+                        Toast.makeText(TambahMenuActivity.this, "Menu "+nama_menu+" dihapus", Toast.LENGTH_SHORT).show();
                     }
 
                 });
@@ -204,6 +202,7 @@ public class TambahMenuActivity extends AppCompatActivity {
                 updateUI();
                 dataMRBList.clear();
                 getDataMenu(finalNewformat);
+                Toast.makeText(TambahMenuActivity.this, "Edit Menu berhasil", Toast.LENGTH_SHORT).show();
             }
         });
     }

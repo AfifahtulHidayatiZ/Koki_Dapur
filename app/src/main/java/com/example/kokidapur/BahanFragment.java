@@ -154,7 +154,7 @@ public class BahanFragment extends Fragment {
                         dbhelper.updateBelanja(Integer.parseInt(id_bahan), nama_bahan, jumlah);
                         listBahan.clear();
                         getDataBahan();
-                        Toast.makeText(getActivity(), "Ditambahkan Ke Daftar Belanja", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(), ""+nama_bahan+" ditambahkan ke daftar belanja", Toast.LENGTH_SHORT).show();
                         alertDialog.dismiss();
                     }
                 });
@@ -178,6 +178,7 @@ public class BahanFragment extends Fragment {
                         listBahan.clear();
                         getDataBahan();
                         alertDialog.dismiss();
+                        Toast.makeText(getActivity(), ""+nama_bahan+" dihapus", Toast.LENGTH_SHORT).show();
                     }
                 });
                 alertDialog.show();

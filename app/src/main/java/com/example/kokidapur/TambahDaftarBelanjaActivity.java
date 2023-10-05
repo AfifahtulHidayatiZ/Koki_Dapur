@@ -59,8 +59,10 @@ public class TambahDaftarBelanjaActivity extends AppCompatActivity {
                 try {
                     if (id_bahan == null || id_bahan.equals("")){
                         saveBelanja();
+                        Toast.makeText(TambahDaftarBelanjaActivity.this, "Berhasil menambahkan daftar belanja", Toast.LENGTH_SHORT).show();
                     }else {
                         editBelanja();
+                        Toast.makeText(TambahDaftarBelanjaActivity.this, "Edit daftar belanja berhasil", Toast.LENGTH_SHORT).show();
                     }
                 }catch (Exception e){
                     Log.e("saving", e.getMessage());

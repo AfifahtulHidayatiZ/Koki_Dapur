@@ -96,7 +96,7 @@ public class BelanjaActivity extends AppCompatActivity {
                         dbhelper.updateBahan(Integer.parseInt(id_bahan), nama_bahan);
                         listbelanja.clear();
                         getDataBelanja();
-                        Toast.makeText(BelanjaActivity.this, "Ditambahkan Ke Daftar Bahan", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(BelanjaActivity.this, ""+nama_bahan+" ditambahkan ke daftar bahan", Toast.LENGTH_SHORT).show();
                         alertDialog.dismiss();
                     }
                 });
@@ -121,6 +121,7 @@ public class BelanjaActivity extends AppCompatActivity {
                         listbelanja.clear();
                         getDataBelanja();
                         alertDialog.dismiss();
+                        Toast.makeText(BelanjaActivity.this, ""+nama_bahan+" dihapus", Toast.LENGTH_SHORT).show();
                     }
                 });
                 alertDialog.show();

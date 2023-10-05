@@ -54,8 +54,10 @@ public class TambahBahanActivity extends AppCompatActivity {
                 try {
                     if (id_bahan == null || id_bahan.equals("")){
                         saveBahan();
+                        Toast.makeText(TambahBahanActivity.this, "Berhasil menambahkan bahan", Toast.LENGTH_SHORT).show();
                     }else {
                         editBahan();
+                        Toast.makeText(TambahBahanActivity.this, "Edit bahan berhasil", Toast.LENGTH_SHORT).show();
                     }
                 }catch (Exception e){
                     Log.e("saving", e.getMessage());
