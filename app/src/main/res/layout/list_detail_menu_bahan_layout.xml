@@ -16,6 +16,12 @@
         android:layout_marginBottom="5dp"
         android:background="@drawable/unselected_item">
 
+        <ImageView
+            android:src="@drawable/ikon_bahan_dm"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_marginLeft="10dp"/>
+
         <TextView
             android:id="@+id/ListDetail_Bahan"
             android:layout_weight="1"
@@ -24,7 +30,7 @@
             android:textSize="15sp"
             android:textStyle="normal"
             android:typeface="serif"
-            android:layout_marginLeft="30dp"
+            android:layout_marginLeft="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 

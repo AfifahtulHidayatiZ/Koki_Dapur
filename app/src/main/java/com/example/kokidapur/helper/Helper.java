@@ -178,14 +178,16 @@ public class Helper extends SQLiteOpenHelper {
         SQLiteDatabase database = this.getWritableDatabase();
         Cursor cursor = database.rawQuery(QUERY,null);
         if (cursor.moveToFirst()){
-            HashMap<String, String> map = new HashMap<>();
-            map.put("id", cursor.getString(0));
-            map.put("id_resep", cursor.getString(1));
-            map.put("recipe_name", cursor.getString(2));
-            map.put("material_name", cursor.getString(3));
-            map.put("instruction", cursor.getString(4));
-            listresepDM.add(map);
-        }while (cursor.moveToNext());
+            do {
+                HashMap<String, String> map = new HashMap<>();
+                map.put("id", cursor.getString(0));
+                map.put("id_resep", cursor.getString(1));
+                map.put("recipe_name", cursor.getString(2));
+                map.put("material_name", cursor.getString(3));
+                map.put("instruction", cursor.getString(4));
+                listresepDM.add(map);
+            }while (cursor.moveToNext());
+        }
         cursor.close();
         return listresepDM;
     }

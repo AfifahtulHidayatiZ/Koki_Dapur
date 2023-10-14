@@ -86,15 +86,16 @@ public class DetailMenu extends AppCompatActivity {
 //        edit_detailbahan = findViewById(R.id.InputBahanMenu);
 //        fabTambahBahanMenu = findViewById(R.id.floatingTambahBahanMenu);
 
-        lvResep = findViewById(R.id.ListTambah_Resep);
-        adapterMenuResep = new AdapterMenuResep(this, dataResepDMList);
-        lvResep.setAdapter(adapterMenuResep);
-        getdataResepDM();
 
         lvBahan = findViewById(R.id.ListBahanBeli);
         adapterMenuBahan = new AdapterMenuBahan(this, dataBahanDMList);
         lvBahan.setAdapter(adapterMenuBahan);
         getdataBahanDM();
+
+        lvResep = findViewById(R.id.ListTambah_Resep);
+        adapterMenuResep = new AdapterMenuResep(this, dataResepDMList);
+        lvResep.setAdapter(adapterMenuResep);
+        getdataResepDM();
 
 //        fabTambahBahanMenu.setOnClickListener(new View.OnClickListener() {
 //            @Override
@@ -164,6 +165,7 @@ public class DetailMenu extends AppCompatActivity {
                                 dbhelper.deleteBahanDM(parsedId);
                                 dataBahanDMList.clear();
                                 getdataBahanDM();
+                                Toast.makeText(DetailMenu.this, TD+" dihapus", Toast.LENGTH_SHORT).show();
                             }catch (NumberFormatException e){
                                 e.printStackTrace();
                             }
@@ -210,6 +212,7 @@ public class DetailMenu extends AppCompatActivity {
                                 dbhelper.deleteResepDM(parsedId);
                                 dataResepDMList.clear();
                                 getdataResepDM();
+                                Toast.makeText(DetailMenu.this, "Resep "+TD+" dihapus", Toast.LENGTH_SHORT).show();
                             } catch (NumberFormatException e) {
                                 throw new RuntimeException(e);
                             }
@@ -286,7 +289,7 @@ public class DetailMenu extends AppCompatActivity {
                 dataBahanDMList.clear();
                 getdataBahanDM();
                 dialog.dismiss();
-                Toast.makeText(DetailMenu.this, "Bahan ditambahkan untuk menu "+nama_menu, Toast.LENGTH_SHORT).show();
+                Toast.makeText(DetailMenu.this, "Bahan ditambahkan", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -306,7 +309,7 @@ public class DetailMenu extends AppCompatActivity {
                         edit_detailbahan.setText("");
                         dataBahanDMList.clear();
                         getDataBahan();
-                        Toast.makeText(DetailMenu.this, "Input bahan berhasil", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(DetailMenu.this, "Silahkan pilih bahan yang baru ditambahkan", Toast.LENGTH_SHORT).show();
                     }
                 } catch (Exception e) {
                     throw new RuntimeException(e);
@@ -341,6 +344,7 @@ public class DetailMenu extends AppCompatActivity {
     private void getdataBahanDM() {
         ArrayList<HashMap<String, String>> rows = dbhelper.getAllBahanDM(Integer.parseInt(id_menu));{
             for (int i=0; i<rows.size(); i++){
+                Log.d("Database", "Total bahan dari database: " + rows.size());
                 String id = rows.get(i).get("id");
                 String id_bahan = rows.get(i).get("id_bahan");
                 String nama_bahan = rows.get(i).get("nama_bahan");
@@ -414,6 +418,7 @@ public class DetailMenu extends AppCompatActivity {
     private void getdataResepDM() {
         ArrayList<HashMap<String, String>> rows = dbhelper.getAllResepDM(Integer.parseInt(id_menu));
         for (int i =0; i<rows.size(); i++){
+            Log.d("Database", "Total resep dari database: " + rows.size());
             String id = rows.get(i).get("id");
             String id_resep = rows.get(i).get("id_resep");
             String recipe_name =rows.get(i).get("recipe_name");

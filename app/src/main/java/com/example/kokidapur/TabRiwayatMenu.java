@@ -98,23 +98,7 @@ public class TabRiwayatMenu extends Fragment {
                 @Override
                 public void onDateChanged(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
                     selectedDate = String.format(Locale.getDefault(), "%04d-%02d-%02d", year, monthOfYear+1, dayOfMonth);
-//                    getDataMenu(selectedDate);
                     Log.i("Tanggal", selectedDate);
-
-//                String id_menu = getDataMenu(selectedDate);
-//                String nama_menu = getDataMenu(selectedDate);
-
-//                if (id_menu !=null && nama_menu !=null){
-//                    Intent intent = new Intent(getActivity(), DetailMenu.class);
-//                    intent.putExtra("selectedDate", selectedDate);
-//
-//                    intent.putExtra("id_menu", id_menu);
-//                    intent.putExtra("nama_menu", nama_menu);
-//                    startActivity(intent);
-//                }
-//                else {
-//                    Toast.makeText(getActivity(), "Tidak ada menu pada tanggal "+selectedDate, Toast.LENGTH_SHORT).show();
-//                }
                 }
             });
         }
@@ -153,6 +137,5 @@ public class TabRiwayatMenu extends Fragment {
     public void onResume() {
         super.onResume();
         dataMRBList.clear();
-//        getDataMenu();
     }
 }
