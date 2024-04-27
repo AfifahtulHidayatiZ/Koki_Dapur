@@ -31,7 +31,7 @@
             android:layout_height="wrap_content"
             android:text="KOKI DAPUR"
             android:textColor="@color/white"
-            android:textSize="30sp"
+            android:textSize="34sp"
             android:textStyle="bold"
             android:typeface="serif"
             android:layout_gravity="center_horizontal"
@@ -49,6 +49,7 @@
             app:tabIconTint="@color/green"
             app:tabIndicatorColor="@color/softgreen"
             android:background="@drawable/backgournd_tab"
+            app:tabTextColor="#CCCCCC"
             app:tabSelectedTextColor="@color/white">
 
             <com.google.android.material.tabs.TabItem

@@ -195,7 +195,11 @@ public class Helper extends SQLiteOpenHelper {
     //menampilkan data MRB (MENU)
     public ArrayList<HashMap<String, String>> getTanggalMenu(String tanggal){
         ArrayList<HashMap<String, String>> listTanggalMenu = new ArrayList<>();
-        String QUERY = "SELECT * FROM mrb WHERE date(tanggal) = '"+tanggal+"'";
+        String QUERY = "SELECT mrb.id_menu, mrb.nama_menu, mrb.tanggal, recipes.recipe_name " +
+                "FROM mrb " +
+                "LEFT JOIN resep_mrb ON mrb.id_menu = resep_mrb.id_menu " +
+                "LEFT JOIN recipes ON resep_mrb.id_resep = recipes.id " +
+                "WHERE date(mrb.tanggal) = '" + tanggal + "'";
         Log.d("tQuesry", QUERY);
         SQLiteDatabase database = this.getWritableDatabase();
         Cursor cursor = database.rawQuery(QUERY, null);
@@ -205,8 +209,9 @@ public class Helper extends SQLiteOpenHelper {
                 map.put("id_menu", cursor.getString(0));
                 map.put("nama_menu", cursor.getString(1));
                 map.put("tanggal", cursor.getString(2));
+                map.put("recipe_name", cursor.getString(3)); // Tambahkan ini untuk nama resep
                 listTanggalMenu.add(map);
-            }while (cursor.moveToNext());
+            } while (cursor.moveToNext());
         }
         cursor.close();
         Log.d("Lihat", listTanggalMenu.toString());

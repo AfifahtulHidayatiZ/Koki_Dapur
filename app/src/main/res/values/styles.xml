@@ -6,7 +6,7 @@
 
     <style name="CustomTabText" parent="TextAppearance.Design.Tab">
         <item name="fontFamily">serif</item>
-        <item name="android:textSize">12sp</item>
+        <item name="android:textSize">15sp</item>
         <item name="android:textStyle">bold</item>
     </style>
 

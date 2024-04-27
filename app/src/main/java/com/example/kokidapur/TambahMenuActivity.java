@@ -25,10 +25,13 @@ import android.widget.Toast;
 import com.example.kokidapur.adapter.Adapter;
 import com.example.kokidapur.adapter.AdapterBahan;
 import com.example.kokidapur.adapter.AdapterMRB;
+import com.example.kokidapur.adapter.AdapterMenuResep;
 import com.example.kokidapur.helper.Helper;
 import com.example.kokidapur.model.Data;
 import com.example.kokidapur.model.DataBahan;
 import com.example.kokidapur.model.DataMRB;
+import com.example.kokidapur.model.DataResepMenu;
+import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.text.ParseException;
@@ -39,22 +42,26 @@ import java.util.HashMap;
 import java.util.List;
 
 public class TambahMenuActivity extends AppCompatActivity {
-    FloatingActionButton fabTambahMenu,fabTambahBahan, fabTambahResep;
+    FloatingActionButton fabTambahMenu;
+    ExtendedFloatingActionButton fabTambahMenuDariResep;
     List<DataBahan> dataBahanList = new ArrayList<>();
     List<Data> dataResepList = new ArrayList<>();
     List<DataMRB> dataMRBList = new ArrayList<>();
+    List<DataResepMenu> dataResepMenuList = new ArrayList<>();
 
     AdapterBahan adapterBahan;
     Adapter adapterResep;
+    AdapterMenuResep adapterMenuResep;
     AlertDialog.Builder dialog;
 
     AdapterMRB adapterMRB;
     Helper dbhelper = new Helper(this);
-    ListView listViewMenu, listViewBahan, listViewResep;
+    ListView listViewMenu, lvPopUpMenu, lvMenuDR;
     DataMRB dataMRB;
     private boolean isEdit = false;
     private EditText editnama_menu;
     private String id_menu, nama_menu, newformat;
+    private TextView empytResep;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -205,6 +212,78 @@ public class TambahMenuActivity extends AppCompatActivity {
                 Toast.makeText(TambahMenuActivity.this, "Edit Menu berhasil", Toast.LENGTH_SHORT).show();
             }
         });
+
+
+        fabTambahMenuDariResep = findViewById(R.id.MenuDariResep);
+        fabTambahMenuDariResep.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showPopUpMenu();
+            }
+        });
+
+    }
+
+    private void showPopUpMenu() {
+        final Dialog dialog1 = new Dialog(this);
+        dialog1.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog1.setContentView(R.layout.menu_popup);
+
+        empytResep = dialog1.findViewById(R.id.EmptyResep);
+
+        lvPopUpMenu = dialog1.findViewById(R.id.LV_ListResep_Popup);
+        adapterResep = new Adapter(this, dataResepList);
+        dataResepList.clear();
+        lvPopUpMenu.setAdapter(adapterResep);
+        getDataResep();
+
+        lvPopUpMenu.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                String namaMenu = dataResepList.get(position).getRecipe_name(); // Ambil nama resep
+                dbhelper.insertMRB(namaMenu, newformat); // Simpan nama resep sebagai nama menu ke dalam tabel menu
+                getDataMenu(newformat); // Refresh data menu
+                dialog1.dismiss();
+                Toast.makeText(TambahMenuActivity.this, "Menu ditambahkan dari resep", Toast.LENGTH_SHORT).show();
+
+            }
+        });
+
+        dialog1.show();
+        dialog1.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        dialog1.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        dialog1.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation;
+        dialog1.getWindow().setGravity(Gravity.BOTTOM);
+
+    }
+
+    private void getDataResep() {
+        ArrayList<HashMap<String, String>> rows = dbhelper.getAll();
+        for (int i = 0; i<rows.size(); i++){
+            String id = rows.get(i).get("id");
+            String recipe_name = rows.get(i).get("recipe_name");
+            String material_name = rows.get(i).get("material_name");
+            String instruction = rows.get(i).get("instruction");
+
+            Data dataResep = new Data();
+            dataResep.setId(id);
+            dataResep.setRecipe_name(recipe_name);
+            dataResep.setMaterial_name(material_name);
+            dataResep.setInstruction(instruction);
+
+            dataResepList.add(dataResep);
+        }
+        adapterResep.notifyDataSetChanged();
+
+        if (dataResepList.isEmpty()){
+            lvPopUpMenu.setVisibility(View.GONE);
+            empytResep.setVisibility(View.VISIBLE);
+        }
+        else {
+            lvPopUpMenu.setVisibility(View.VISIBLE);
+            empytResep.setVisibility(View.GONE);
+        }
+
     }
 
     private void updateUI() {
@@ -226,10 +305,12 @@ public class TambahMenuActivity extends AppCompatActivity {
         for (int i=0; i<rows.size(); i++){
             String id = rows.get(i).get("id_menu");
             String nama = rows.get(i).get("nama_menu");
+            String recipe_name = rows.get(i).get("recipe_name");
 
             DataMRB dataMRB = new DataMRB();
             dataMRB.setId_menu(id);
             dataMRB.setNama_menu(nama);
+            dataMRB.setRecipe_name(recipe_name);
 
             dataMRBList.add(dataMRB);
         }

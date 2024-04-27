@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/popup_background">
+
+    <TextView
+        android:text="PILIH MENU DARI RESEP"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:textColor="@color/green_001"
+        android:typeface="serif"
+        android:gravity="center_horizontal"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <ListView
+        android:id="@+id/LV_ListResep_Popup"
+        android:divider="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="450dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginTop="26dp"
+        tools:listitem="@layout/list_resep_layout"/>
+
+    <TextView
+        android:id="@+id/EmptyResep"
+        android:text="Anda belum memiliki resep \nSilahkan tambahkan resep pada halaman RESEP "
+        android:typeface="serif"
+        android:textColor="@color/grey"
+        android:textStyle="normal"
+        android:textSize="14dp"
+        android:layout_marginTop="150dp"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center_horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="300dp"
+        android:visibility="gone"/>
+
+</LinearLayout>
